@@ -19,6 +19,20 @@ Expressions: Programming language constructs that are evaluated to obtain values
 
 Expressions that are evaluated solely for their value, and not for any computational effects are said to be functional
 
+*** 1.1.1 Literals, Procedure Calls, and Variables
+
+**** Literals
+They always return the expressed value.
+Eg: Numbers, Booleans, Strings
+
+**** Variable References
+
+A value can be bound to a variable. This is it’s reference.
+
+A variable is said to denote the value of its binding.
+
+The data that can be bound to variables constitute the denoted values of a programming language.
+
 ** Section 1.2
 Data types
 
