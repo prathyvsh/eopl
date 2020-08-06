@@ -92,6 +92,12 @@ The data that can be bound to variables constitute the denoted values of a progr
 
 In Scheme, the denoted values and expressed values are the same, at least in the absence of variable assignment.
 
+In the book, the term function is reserved for mathematical functions and functions take on the name of procedure.
+
+In the expression (p 2 3) the procedure p is said to be applied to the arguments 2 and 3.
+
+This process of procedure call is known as application or combination.
+
 ** Section 1.2
 Data types
 
