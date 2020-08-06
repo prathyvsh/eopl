@@ -1,5 +1,9 @@
 * Reading Time
 
 | *Section* | *Time* |
-| Section 1 | | 
+| *Overview* | 1 hour |
+| Overview | 6 August, 2020 – 12:44am - 1:14am |
+| Overview | 6 August, 2020 - 3:55am - 4:25am |
+
+| *Section 1* | | 
 | Section 1.1 | July 30, 2020 – 9:30pm - 10:00pm |
