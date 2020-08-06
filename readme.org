@@ -1,5 +1,62 @@
 * Essentials of Programming Languages
 
+* Overview
+
+*Chapter 1*
+- Features of Scheme
+
+*Chapter 2*
+- Connection between inductive data specification and recursive programming.
+- Notions related to scope of variables is introduced in this chapter
+
+*Chapter 3*
+- Data abstraction and examples of representational transformations.
+- Syntactic abstractions such as variant record facility.
+
+*Chapter 4*
+- Lambda Calculus is introduced along with several rewrite rules that are basic program transformations.
+- Brief overview of imperative programming
+
+*Chapter 5-7 use 1-4 to describe semantics of programming languages*
+
+*Chapter 5-10 goes from the derivation of a sequence of interpreters ranging from ver high  to very lowe level. This provides a solid hands-on understanding of programming language semantics and a disciplined approach to language implementation. Goes from the high-level operational specification which serves as a rapid prototype and ends with what is effectively assembly language.*
+
+*Chapter 5*
+- Interpreters as mechanisms for eplaining the run-time behaviour of laguages and develops an interpreter for a simple, lexically scoped language with first-class procedures and variable assignment.
+- Explores static and dynamic scoping and implementation of recursion.
+
+*Chapter 6*
+- Parameter passing mechanisms
+
+*Chapter 7*
+- Varieties of object-oriented facilities.
+- Characterizations of inheritance and meta-classes.
+
+*Chapter 8*
+- Using continuation-passing style (CPS) to transform high-level interpreters into a flowchart-like form.
+- Uses CPS as a technique for expressing recursion by iteration.
+
+*Chapter 9*
+- Transforms the interpreter to CPS style
+- Applies techniques of chapter 3 to develop data structure representations of continuations
+- Data abstraction techniques are used to eplore alternative representation strategies for the data manipulated by interpreters
+- This allows for the ability to present continuations accessible to the programmer as first-class objects of computation
+
+*Chapter 10*
+- Transformation of interpreter to a set of data structures manipulated by a finite-state controller
+- This makes the interpreter implementable in any low-level language
+- The ability to represent the data structures of the interpreter in a single stack with static and dynamic links is shown
+- This provides a solid understanding of stack-based language architectures and illustrates the power of algebraic reasoning techniques
+
+*Chapter 11-12 applies techniques learnt so far to the development of scanners, parsers, and compilers*
+
+*Chapter 11*
+- Introduces leical scaning and parsing techniques
+- Program transformations clarify the relationship between recursive descent and table-driven parsers
+
+*Chapter 12*
+Shows how to start with a high-level functional specification of a language and by choosig suitable representations of data abstractions, to derive both a virtual machine and a cmopiler that translates the high-level language to code for the virtual machine.
+
 * Section 1
 
 ** Syntax
