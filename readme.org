@@ -84,7 +84,7 @@ Eg: Numbers, Booleans, Strings
 
 **** Variable References
 
-A value can be bound to a variable. This is it’s reference.
+A value can be bound to a variable. This is its reference.
 
 A variable is said to denote the value of its binding.
 
