@@ -90,6 +90,8 @@ A variable is said to denote the value of its binding.
 
 The data that can be bound to variables constitute the denoted values of a programming language.
 
+In Scheme, the denoted values and expressed values are the same, at least in the absence of variable assignment.
+
 ** Section 1.2
 Data types
 
