@@ -56,3 +56,6 @@
 
 *Chapter 12*
 Shows how to start with a high-level functional specification of a language and by choosig suitable representations of data abstractions, to derive both a virtual machine and a cmopiler that translates the high-level language to code for the virtual machine.
+
+*Chapter 13*
+Found out that there is a chapter on types that didn’t make it into the publication: https://web.archive.org/web/20070822021157/http://ftp.cs.indiana.edu/pub/eopl/ch13.ps
