@@ -13,7 +13,7 @@ Introduces several ways of building Scheme expressions.
 A programming language construct that is evaluated only for its side effect.
 Eg: Assignment, I/O statements, control statements.
 
-Expressions: Programming language constructs that are evaluated to obtain values.
+*Expressions*: Programming language constructs that are evaluated to obtain values.
 
 Expressions that are evaluated solely for their value, and not for any computational effects are said to be functional
 
@@ -43,21 +43,21 @@ An operation can have > 0 operands.
 
 Operator and operands are components that are themselves expressions.
 
-Expressions that are part of other expressions are called subexpressions.
+Expressions that are part of other expressions are called *subexpressions*.
 
 The operator subexpression is evaluated to obtain a procedure, while operand subexpressions are evaluated to obtain the arguments of the call before invoking the procedure.
 
-Arguments are also referred to as actual parameters or simply parameters.
+*Arguments* are also referred to as *actual parameters* or simply parameters.
 
 In Scheme, the order in which operator and operand expressions are evaluated is not specified.
 
 Procedures that return procedures are called higher-order procedures.
 
-Special forms
+*** Special forms
 
 Special forms are those in which the rules of evaluation are different than expression evaluation.
 
-Special form identifiers are called keywords.
+Special form identifiers are called *keywords*.
 
 Each special form has its own sequencing rule, that is to say its own order of subexpression evaluation.
 
@@ -65,7 +65,7 @@ In the case of define, the expression is evaluated first and the variable is bou
 
 The definitions and expressions are said to be at top level.
 
-REPL = Read Eval Print Loop
+*** REPL = Read Eval Print Loop
 
 The use of define is restricted to the top level in this book.
 
@@ -73,7 +73,7 @@ Redefinition of all variables is allowed in the Scheme environment in this book.
 
 The distinction between the environment and the language is introduced early in this book.
 
-Conditional Expressions
+*** Conditional Expressions
 
 #+BEGIN_SRC :scheme
 (if test-exp then-exp else-exp)
