@@ -1,4 +1,6 @@
-* Essentials of Programming Languages
+* Essentials of Programming Languages: First Edition
+
+[[Cover Image of First Edition][./cover.jpg]]
 
 * [[./chapter-1.org][Chapter 1: Tools for Symbolic Programming]]
 
