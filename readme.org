@@ -1,9 +1,9 @@
 * Essentials of Programming Languages
 
-* Overview
+* [[./chapter-1.org][Chapter 1: Tools for Symbolic Programming]]
 
-*Chapter 1*
-- Features of Scheme
+First chapter goes on a quick tour of the Scheme language.
+If you have not had prior exposure to the language, a more thorough guide as recommended in the further reading section or HtDP is recommended before you dive into this one as the details provided on the language constructs are crisp and to the point. One has to be accustomed to the nuances and language intricacies of Scheme to get a firm grasp on the details being mentioned here.
 
 *Chapter 2*
 - Connection between inductive data specification and recursive programming.
