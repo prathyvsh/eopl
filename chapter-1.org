@@ -113,5 +113,38 @@ Short for Construct
 (cdr (cons v l)) = l
 #+END_SRC
 
+*Pair*
+
+A pair also known as dotted pair or cons cell is a structure with two fields called car and cdr.
+
+A list that doesn't end in an empty list is called an improper list. It can be denoted using the dotted pair notation.
+
+#+BEGIN_SRC
+`(a (b c) d)
+;; can be denoted as
+`(a . ((b . (c . ())) . (d . ())))
+#+END_SRC
+
+eq? checks if two elements have the same written representation. This is not necessarily true for numbers, pairs, lists, and strings.
+
+A hint is made to the aspect of structural sharing whereby a change in a certain shared data structure gets propagated throughout the environment. Data structures that refers to this shared data structure also gets changed as a result of this process.
+
+*Vectors*
+
+Distinction between derived data type and primitive data types is drawn.
+
+Lists are identified as a derived data type as they are formed from the primitive data types: the cons cell and the empty list.
+
+*Records*
+Heterogenous compound data types that can be selected by their field names and provides random access to their components.
+
+*Arrays*
+Homogenous compound data types that provide random access to their components.
+
+Scheme supplies vectors which can be used in place of records and arrays.
+
+*Cell*
+A one element vector
+
 ** Section 1.3
 Procedures
