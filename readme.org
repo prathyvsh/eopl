@@ -51,7 +51,7 @@
 *Chapter 11-12 applies techniques learnt so far to the development of scanners, parsers, and compilers*
 
 *Chapter 11*
-- Introduces leical scaning and parsing techniques
+- Introduces lexical scaning and parsing techniques
 - Program transformations clarify the relationship between recursive descent and table-driven parsers
 
 *Chapter 12*
