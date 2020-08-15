@@ -39,6 +39,52 @@ In the expression (p 2 3) the procedure p is said to be applied to the arguments
 
 This process of procedure call is known as application or combination.
 
+An operation can have > 0 operands.
+
+Operator and operands are components that are themselves expressions.
+
+Expressions that are part of other expressions are called subexpressions.
+
+The operator subexpression is evaluated to obtain a procedure, while operand subexpressions are evaluated to obtain the arguments of the call before invoking the procedure.
+
+Arguments are also referred to as actual parameters or simply parameters.
+
+In Scheme, the order in which operator and operand expressions are evaluated is not specified.
+
+Procedures that return procedures are called higher-order procedures.
+
+Special forms
+
+Special forms are those in which the rules of evaluation are different than expression evaluation.
+
+Special form identifiers are called keywords.
+
+Each special form has its own sequencing rule, that is to say its own order of subexpression evaluation.
+
+In the case of define, the expression is evaluated first and the variable is bound to the value of the expression.
+
+The definitions and expressions are said to be at top level.
+
+REPL = Read Eval Print Loop
+
+The use of define is restricted to the top level in this book.
+
+Redefinition of all variables is allowed in the Scheme environment in this book.
+
+The distinction between the environment and the language is introduced early in this book.
+
+Conditional Expressions
+
+#+BEGIN_SRC :scheme
+(if test-exp then-exp else-exp)
+#+END_SRC
+
+The use of if to guard against errors is only possible if it one of the branches is not evaluated as in the case of:
+
+#+BEGIN_SRC :scheme
+(if (zero? a) 0 (/ x a))
+#+END_SRC
+
 ** Section 1.2
 Data types
 
