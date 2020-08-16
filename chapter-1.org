@@ -164,3 +164,10 @@ In Scheme all values are first class, including procedures.
 
 ** Section 1.3
 Procedures
+
+*Currying*
+Using currying one can replace a procedure with n arguments to a procedure requiring n-1 arguments and repeat this process successively. 
+
+*Arity*
+The number of arguments taken by a function.
+
