@@ -171,3 +171,6 @@ Using currying one can replace a procedure with n arguments to a procedure requi
 *Arity*
 The number of arguments taken by a function.
 
+*Variable arity*
+The idea of variable arity is introduced by using a single formal argument of a lambda function treated as a list.
+
