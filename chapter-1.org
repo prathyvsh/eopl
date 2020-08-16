@@ -146,5 +146,21 @@ Scheme supplies vectors which can be used in place of records and arrays.
 *Cell*
 A one element vector
 
+*Higher Order Functions*
+
+*Apply*
+Apply allows to perform an application on arguments that have already been assembled into list form.
+
+*Lambda*
+Lambda functions are used to define procedures which might not be bound to a variable.
+
+The form of lambda function is:
+(lambda formals body)
+The formals declare formal parameters which can only be used locally within the lambda function.
+
+*First class procedures*
+A value is said to be first class if it may be passed to and return from procedures and stored in data structures.
+In Scheme all values are first class, including procedures.
+
 ** Section 1.3
 Procedures

@@ -4,8 +4,22 @@
 
 * [[./chapter-1.org][Chapter 1: Tools for Symbolic Programming]]
 
+** Synopsis
+
+The book gives a very brief introduction to Scheme language in its first chapter.
+
+** Overview
+
 First chapter goes on a quick tour of the Scheme language.
 If you have not had prior exposure to the language, a more thorough guide as recommended in the further reading section or HtDP is recommended before you dive into this one as the details provided on the language constructs are crisp and to the point. One has to be accustomed to the nuances and language intricacies of Scheme to get a firm grasp on the details being mentioned here.
+
+Ideas such as higher order functions are introduced within a page and there are doozies like:
+
+#+BEGIN_SRC scheme
+(apply apply (list procedure? (list apply)))
+#+END_SRC
+
+which returns true mentioned as a one liner to demonstrate how apply works iteratively.
 
 *Chapter 2*
 - Connection between inductive data specification and recursive programming.
