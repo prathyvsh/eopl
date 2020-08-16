@@ -7,13 +7,15 @@
 ** Synopsis
 
 The book gives a very brief introduction to Scheme language in its first chapter.
+Next, the reader is introduced to the idea of recursion and data structures. The idea of scope of variables is introduced which perhaps will also give an idea about language and the environment. Ideas of abstracting data is introduced in the third chapter.
+Lambda Calculus which is the cornerstone of Scheme is introduced and an introduction to imperative programming is given by the 4th chapter. 
+Next, the text moves on to give an idea of semantics of the programming languages using the techniques detailed above.
 
 ** Overview
 
-First chapter goes on a quick tour of the Scheme language.
-If you have not had prior exposure to the language, a more thorough guide as recommended in the further reading section or HtDP is recommended before you dive into this one as the details provided on the language constructs are crisp and to the point. One has to be accustomed to the nuances and language intricacies of Scheme to get a firm grasp on the details being mentioned here.
+First chapter goes on a quick tour of the Scheme language. If you have not had prior exposure to the language, a more thorough guide as recommended in the further reading section or HtDP is recommended before you dive into this one as the details provided on the language constructs are crisp and to the point. One has to be accustomed to the nuances and language intricacies of Scheme to get a firm grasp on the details being mentioned here.
 
-Ideas such as higher order functions are introduced within a page and there are doozies like:
+For example, ideas such as higher order functions are introduced within a page with map and andmap being briefly introduced as demonstrations without hints on how their construction is done. And there are doozies like:
 
 #+BEGIN_SRC scheme
 (apply apply (list procedure? (list apply)))
@@ -35,10 +37,11 @@ which returns true mentioned as a one liner to demonstrate how apply works itera
 
 *Chapter 5-7 use 1-4 to describe semantics of programming languages*
 
-*Chapter 5-10 goes from the derivation of a sequence of interpreters ranging from ver high  to very lowe level. This provides a solid hands-on understanding of programming language semantics and a disciplined approach to language implementation. Goes from the high-level operational specification which serves as a rapid prototype and ends with what is effectively assembly language.*
+*Chapter 5-10 goes from the derivation of a sequence of interpreters ranging from ver high  to very low level. This provides a solid hands-on understanding of programming language semantics and a disciplined approach to language implementation. Goes from the high-level operational specification which serves as a rapid prototype and ends with what is effectively assembly language.*
 
 *Chapter 5*
-- Interpreters as mechanisms for eplaining the run-time behaviour of laguages and develops an interpreter for a simple, lexically scoped language with first-class procedures and variable assignment.
+- Interpreters as mechanisms for explaining the run-time behaviour of laguages
+- Develops an interpreter for a simple, lexically scoped language with first-class procedures and variable assignment.
 - Explores static and dynamic scoping and implementation of recursion.
 
 *Chapter 6*
