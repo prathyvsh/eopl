@@ -20,4 +20,32 @@ constructed with the help of it.
 <vector> ::= #({<datum>}*)
 <datum> ::= <number> | <symbol> | <boolean> | <string> | <list> | <dotted-datum> | <vector>
 
+* Exercise 2.1.2
+
+This exercise is a good one in that it makes one think closely about the need for a dot syntax.
+When the Kleene * and Kleene + is not used, the requirement for the dot syntax becomes apparent.
+
+Without the dot syntax list ::= () | (<datum> <list>) would yield a nested structure. That is:
+
+#+BEGIN_SRC
+(<datum> (<datum> <list>))
+(<datum> (<datum> ()))
+#+END_SRC
+
+Which is a recursively nested object, whereas with a dot notation, this nesting doesn't occur.
+
+This exercise and the next one is also making me aware of the requirement for a null element
+but this hasn't been taught in the textbook yet.
+
+This object is required for the definition of <vector> without the Kleene star.
+
+#+BEGIN_SRC
+<vector> ::= #() | #(<datum> <vector>)
+#+END_SRC
+
+This would lead to the same problem as above. But a dot operator for <vector> doesn't seem to exist.
+
+In the absence of this, the first solution that comes to my mind is to to introduce the null element.
+
+* Exercise 2.1.3
 

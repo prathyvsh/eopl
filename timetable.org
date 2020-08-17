@@ -29,4 +29,4 @@
 | Section 2.1 - Page 35 | August 17, 2020 - 5:07pm - 5:12pm | 5 minutes |
 | Exercise 2.1.1 | August 17, 2020 - 5:12pm - 5:13pm | 1 minute |
 | Section 2.1 - Page 36 | August 17, 2020 - 5:13pm - 5:14pm | 1 minute |
-| Exercise 2.1.2 - Exercise 2.1.3 | August 17, 2020 - 5:14pm - 5:37pm | 23 minutes |
+| Exercise 2.1.2 | August 17, 2020 - 5:14pm - 5:37pm | 23 minutes |
