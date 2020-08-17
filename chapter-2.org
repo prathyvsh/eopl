@@ -1,0 +1,14 @@
+* Chapter 2: Induction, Recursion, and Scope
+
+* Inductive Specification
+A way to specify data types that are potentially infinite.
+
+* Backus-Naur Form
+** Syntactic Categories / Non-terminals
+
+<list-of-numbers> ::= () | (<number>.<list-of-numbers>)
+
+Using Kleene Star notation
+<list-of-numbers> ::= ({<number>}*)
+
+
