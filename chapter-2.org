@@ -11,4 +11,13 @@ A way to specify data types that are potentially infinite.
 Using Kleene Star notation
 <list-of-numbers> ::= ({<number>}*)
 
+* Grammar
+A grammar of a language describes using BNF the kind of structures possible to be
+constructed with the help of it.
+
+<list> ::= ({<datum>}*)
+<dotted-datum> ::= ({<datum>}+ . <datum>)
+<vector> ::= #({<datum>}*)
+<datum> ::= <number> | <symbol> | <boolean> | <string> | <list> | <dotted-datum> | <vector>
+
 
