@@ -31,7 +31,7 @@
          (row-entry (map first rows))
          (time (map second rows))
          (total-time (foldl + 0 time)))
-  (list (~a (~a "| * " (first section) #:min-width 22) " * | * " (in-hours-and-minutes total-time) " * |\n"
+    (list (~a "| " (~a "*" (first section) "*" #:min-width 22) " | *" (in-hours-and-minutes total-time) "* |\n"
   (string-join row-entry "\n")) total-time)))
 
 (define (build-table entries)
@@ -86,7 +86,7 @@
          (list "Building Timetable Generator" (stamp 3 50 19 8 2020) (stamp 4 20 19 8 2020))
    ))))
 
-(with-output-to-file "./timetable.org" (lambda () (display (build-table dates))) #:exists 'update)
+(with-output-to-file "./timetable.org" (lambda () (display (build-table dates))) #:exists 'replace)
 
 
 
