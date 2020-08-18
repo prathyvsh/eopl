@@ -1,5 +1,7 @@
 * Chapter 2: Induction, Recursion, and Scope
 
+The chapter begins by introducing the reader to Backus Naur Form and helping them reason about it with the help of exercises.
+
 * Inductive Specification
 A way to specify data types that are potentially infinite.
 
