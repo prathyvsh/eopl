@@ -1,43 +1,37 @@
 * Essentials of Programming Languages
-** Total Time: 7 hours 30 minutes
-
-*Overview | 1 hour *
---------------
-Overview                       | 30 minutes  |
-Overview                       | 30 minutes  |
-*Section 1 | 4 hours 41 minutes*
---------------
-Section 1.1                    | 30 minutes  |
-Exercise 1.1.1                 | 0 minutes   |
-Section 1.1                    | 30 minutes  |
-Section 1.2                    | 30 minutes  |
-Exercise 1.2.1                 | 15 minutes  |
-Section 1.2                    | 15 minutes  |
-Exercise 1.2.2                 | 14 minutes  |
-Section 1.2                    | 16 minutes  |
-Exercise 1.2.3                 | 5 minutes   |
-Section 1.2                    | 25 minutes  |
-Exercise 1.3.1                 | 30 minutes  |
-Exercise 1.3.2 - 1.3.3         | 5 minutes   |
-Section 1.3                    | 25 minutes  |
-Exercise 1.3.4 - 1.3.6         | 7 minutes   |
-Section 1.3                    | 23 minutes  |
-Execise 1.3.7                  | 11 minutes  |
-*Section 2 | 1 hour 49 minutes*
---------------
-Section 2.1                    | 19 minutes  |
-Section 2.1                    | 5 minutes   |
-Exercise 2.1.1                 | 1 minutes   |
-Section 2.1                    | 1 minutes   |
-Exercise 2.1.2                 | 23 minutes  |
-Exercise 2.1.2                 | 30 minutes  |
-Exercise 2.1.3                 | 30 minutes  |.3.7 | August 17, 2020 - 4:21pm — 4:32pm | 11 minutes |
-
-| *Section 2* | | *1 hour 19 minutes* |
-| Section 2.1 - Page 34 | August 17, 2020 - 4:32pm – 4:51pm | 19 minutes |
-| Section 2.1 - Page 35 | August 17, 2020 - 5:07pm - 5:12pm | 5 minutes |
-| Exercise 2.1.1 | August 17, 2020 - 5:12pm - 5:13pm | 1 minute |
-| Section 2.1 - Page 36 | August 17, 2020 - 5:13pm - 5:14pm | 1 minute |
-| Exercise 2.1.2 | August 17, 2020 - 5:14pm - 5:37pm | 23 minutes |
-| Exercise 2.1.2 | August 17, 2020 - 6:00pm - 6:30pm | 30 minutes |
-
+** Total Time: 10 hours 30 minutes
+| * Overview           * | * 1 hour  * |
+| Overview               | 30 minutes          |
+| Overview               | 30 minutes          |
+| * Section 1          * | * 4 hours 41 minutes * |
+| Section 1.1            | 30 minutes          |
+| Exercise 1.1.1         | 0 minutes           |
+| Section 1.1            | 30 minutes          |
+| Section 1.2 - 15       | 30 minutes          |
+| Exercise 1.2.1         | 15 minutes          |
+| Section 1.2            | 15 minutes          |
+| Exercise 1.2.2         | 14 minutes          |
+| Section 1.2            | 16 minutes          |
+| Exercise 1.2.3         | 5 minutes           |
+| Section 1.2            | 25 minutes          |
+| Exercise 1.3.1         | 30 minutes          |
+| Exercise 1.3.2 - 1.3.3 | 5 minutes           |
+| Section 1.3            | 25 minutes          |
+| Exercise 1.3.4 - 1.3.6 | 7 minutes           |
+| Section 1.3            | 23 minutes          |
+| Exercise 1.3.7         | 11 minutes          |
+| * Section 2          * | * 1 hour 49 minutes * |
+| Section 2.1            | 19 minutes          |
+| Section 2.1            | 5 minutes           |
+| Exercise 2.1.1         | 1 minutes           |
+| Section 2.1            | 1 minutes           |
+| Exercise 2.1.2         | 23 minutes          |
+| Exercise 2.1.2         | 30 minutes          |
+| Exercise 2.1.3         | 30 minutes          |
+| * Extras             * | * 3 hours  * |
+| Reading List           | 30 minutes          |
+| Reading List           | 30 minutes          |
+| Building Timetable Generator | 30 minutes          |
+| Building Timetable Generator | 30 minutes          |
+| Building Timetable Generator | 30 minutes          |
+| Building Timetable Generator | 30 minutes          |
