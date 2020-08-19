@@ -78,9 +78,9 @@
           (list "Section 2.1.4" (stamp 22 39 19 8 2020) (stamp 23 09 19 8 2020) 38)
           (list "Section 2.2.1" (stamp 00 41 20 8 2020) (stamp 1 11 20 8 2020) 44)
           (list "Exercise 2.2.1" (stamp 2 05 20 8 2020) (stamp 2 35 20 8 2020))
-)
-                                                                                
-          )
+          (list "Section 2.2.2" (stamp 3 38 20 8 2020) (stamp 3 42 20 8 2020) 46)
+          (list "Exercise 2.2.2" (stamp 3 42 20 8 2020) (stamp 3 53 20 8 2020))
+	  (list "Section 2.2.2" (stamp 3 53 20 8 2020) (stamp 4 08 20 8 2020) 47)))
    (list "Extras"
          (list (list "Reading List" (stamp 21 12 18 8 2020) (stamp 21 42 18 8 2020))
          (list "Reading List" (stamp 23 21 18 8 2020) (stamp 23 51 18 8 2020))
