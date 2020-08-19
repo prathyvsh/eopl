@@ -71,12 +71,13 @@
           (list "Section 2.1" (stamp 16 32 17 8 2020) (stamp 16 51 17 8 2020) 34)
           (list "Section 2.1" (stamp 17 07 17 8 2020) (stamp 17 12 17 8 2020) 35)
           (list "Exercise 2.1.1" (stamp 17 12 17 8 2020) (stamp 17 13 17 8 2020))
-          (list "Section 2.1" (stamp 17 13 17 8 2020) (stamp 17 14 17 8 2020))
+          (list "Section 2.1" (stamp 17 13 17 8 2020) (stamp 17 14 17 8 2020) 36)
           (list "Exercise 2.1.2" (stamp 17 14 17 8 2020) (stamp 17 37 17 8 2020))
           (list "Exercise 2.1.2" (stamp 18 00 17 8 2020) (stamp 18 30 17 8 2020))
           (list "Exercise 2.1.3" (stamp 1 50 19 8 2020) (stamp 2 20 19 8 2020))
           (list "Section 2.1.4" (stamp 22 39 19 8 2020) (stamp 23 09 19 8 2020) 38)
           (list "Section 2.2.1" (stamp 00 41 20 8 2020) (stamp 1 11 20 8 2020) 44)
+          (list "Exercise 2.2.1" (stamp 2 05 20 8 2020) (stamp 2 35 20 8 2020))
 )
                                                                                 
           )
@@ -89,7 +90,13 @@
          (list "Building Timetable Generator" (stamp 3 50 19 8 2020) (stamp 4 20 19 8 2020))
    ))))
 
-(with-output-to-file "./timetable.org" (lambda () (display (build-table dates))) #:exists 'replace)
+;; TODO:
+;; Breakdown of reading speed by every 100 pages:
+;; 100/463 pages read in n pomodoros
+;; 200/463 pages read in m pomodoros
+;; Reading speed
+;; Breakdown of time spent for exercises (by chapter and by 50 pomodoros?)
 
+(with-output-to-file "./timetable.org" (lambda () (display (build-table dates))) #:exists 'replace)
 
 
