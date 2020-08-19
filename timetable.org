@@ -1,5 +1,5 @@
 * Essentials of Programming Languages
-** Total Time: 11 hours 20 minutes
+** Total Time: 11 hours 30 minutes
 | *Overview*             | *1 hour* |
 | Overview               | 30 minutes          |
 | Overview               | 30 minutes          |
@@ -20,7 +20,7 @@
 | Exercise 1.3.4 - 1.3.6 | 7 minutes           |
 | Section 1.3            | 23 minutes          |
 | Exercise 1.3.7         | 11 minutes          |
-| *Section 2*            | *2 hours 39 minutes* |
+| *Section 2*            | *2 hours 49 minutes* |
 | Section 2.1            | 19 minutes          |
 | Section 2.1            | 5 minutes           |
 | Exercise 2.1.1         | 1 minutes           |
@@ -28,7 +28,7 @@
 | Exercise 2.1.2         | 23 minutes          |
 | Exercise 2.1.2         | 30 minutes          |
 | Exercise 2.1.3         | 30 minutes          |
-| Section 2.1.4          | 20 minutes          |
+| Section 2.1.4          | 30 minutes          |
 | Section 2.2.1          | 30 minutes          |
 | *Extras*               | *3 hours* |
 | Reading List           | 30 minutes          |

@@ -75,7 +75,7 @@
           (list "Exercise 2.1.2" (stamp 17 14 17 8 2020) (stamp 17 37 17 8 2020))
           (list "Exercise 2.1.2" (stamp 18 00 17 8 2020) (stamp 18 30 17 8 2020))
           (list "Exercise 2.1.3" (stamp 1 50 19 8 2020) (stamp 2 20 19 8 2020))
-          (list "Section 2.1.4" (stamp 22 49 19 8 2020) (stamp 23 09 19 8 2020) 38)
+          (list "Section 2.1.4" (stamp 22 39 19 8 2020) (stamp 23 09 19 8 2020) 38)
           (list "Section 2.2.1" (stamp 00 41 20 8 2020) (stamp 1 11 20 8 2020) 44)
 )
                                                                                 
