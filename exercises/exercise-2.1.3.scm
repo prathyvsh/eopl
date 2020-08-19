@@ -1,5 +1,5 @@
-;; <datum-+> ::= <datum> | <datum> <datum-+>
-;; <datum-*> ::= <null> | <datum><datum-*>
+;; <datum-*> ::= <null> | <datum> <datum-*>
+;; <datum-+> ::= <datum> <datum-*>
 ;; <list> ::= (<datum-*>)
 ;; <dotted-datum> ::= (<datum-+> . <datum>)
 ;; <vector> ::= #(<datum-*>)
@@ -7,7 +7,8 @@
 
 ;; (a "mixed" #(bag (of . data)))
 
-;; <list>
+;; <datum>
+;; => <list>
 ;; => (<datum-*>)
 ;; => (<datum> <datum> <datum> <datum-*>)
 ;; => (<datum> <datum> <datum> <null>)
@@ -29,3 +30,8 @@
 ;; => (a "mixed" #(bag (of . <datum>)))
 ;; => (a "mixed" #(bag (of . <symbol>)))
 ;; => (a "mixed" #(bag (of . data)))
+
+;; About (a . b . c), as per this grammar, it is not a valid construct.
+;; as <dotted-datum> => (<datum-+> . <datum>).
+;; Here <datum-+> can only expand to another <dotted-datum> giving a
+;; nested structure ((<datum-+> . <datum>) . <datum>)w
