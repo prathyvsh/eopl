@@ -111,7 +111,7 @@
                                                    (string-join
                                                     (list
                                                        (~a "* Essentials of Programming Languages\n")
-                                                     (~a "**Start Date**: " (date->string start-date))
+                                                     (~a "*Start Date*: " (date->string start-date))
                                                           (~a "*Latest Work Date*: " (date->string last-date))
                                                           (~a "*Elapsed Time*: "
                                                               (quotient (span start-date last-date)
