@@ -98,3 +98,41 @@
 (equal? (product '(x) '(a b)) '((x a) (x b)))
 (equal? (product '(a b) '(x)) '((a x) (b x)))
 (equal? (product '(a b c) '(x y)) '((a x) (a y) (b x) (b y) (c x) (c y)))
+
+(define (swap s1 s2 sym-or-list)
+  (if (symbol? sym-or-list)
+      (if (equal? sym-or-list s1) s2
+      (if (equal? sym-or-list s2) s1
+      sym-or-list))
+      (swapper s1 s2 sym-or-list)))
+
+(define (swapper s1 s2 slst)
+  (if (null? slst) '()
+      (cons (swap s1 s2 (car slst)) (swapper s1 s2 (cdr slst)))))
+
+(equal? (swapper 'a 'd '(a b c d)) '(d b c a))
+(equal? (swapper 'x 'y '((x) y (z (x))))
+        '((y) x (z (y))))
+(equal? (swapper 'a 'b '()) '())
+(equal? (swapper 'a 'b '(b a)) '(a b))
+
+(define (rotate los)
+  (if (null? los) '()
+      (append (list (last-item los))
+              (but-last los))))
+
+(define (last-item los)
+  (if (null? los) '()
+      (if (null? (cdr los)) (car los)
+      (last-item (cdr los)))))
+
+(define (but-last los)
+  (if (null? los) '()
+      (if (null? (cdr los)) '()
+      (cons (car los) (but-last (cdr los))))))
+
+(equal? (rotate '(a b c d)) '(d a b c))
+(equal? (rotate '(notmuch)) '(notmuch))
+(equal? (rotate '()) '())
+(equal? (rotate '(a b)) '(b a))
+(equal? (rotate (rotate '(a b))) '(a b))
