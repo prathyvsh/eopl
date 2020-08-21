@@ -112,8 +112,8 @@
                                                     (list
                                                        (~a "* Essentials of Programming Languages\n")
                                                      (~a "**Start Date**: " (date->string start-date))
-                                                          (~a "**Latest Work Date**: " (date->string last-date))
-                                                          (~a "**Elapsed Time**: "
+                                                          (~a "*Latest Work Date*: " (date->string last-date))
+                                                          (~a "*Elapsed Time*: "
                                                               (quotient (span start-date last-date)
                                                                  (* 24 60 60)) " days")
                                                    (build-table dates)) "\n"))) #:exists 'replace)
