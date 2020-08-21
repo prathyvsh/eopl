@@ -1,4 +1,7 @@
 * Essentials of Programming Languages
+Start Date:Sunday, July 30th, 2020
+Elapsed Date:Sunday, August 22nd, 2020
+Elapsed Time: 22 days
 ** Total Time: 14 hours 30 minutes
 | *Overview*             | *1 hour* |
 | Overview               | 30 minutes          |

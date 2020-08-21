@@ -16,12 +16,12 @@
         (if (eq? m 0) "" (~a " " m (if (eq? m 1) " minute" " minutes"))))))
 
 (define (span start end)
-  (in-minutes (- (date->seconds end) (date->seconds start))))
+  (- (date->seconds end) (date->seconds start)))
 
 (define (build-row entry)
   (let* ((start (second entry))
         (end (third entry))
-        (timespan (span start end)))
+        (timespan (in-minutes (span start end))))
   (list
    (~a (~a "| " (first entry) #:min-width 24) " | " (~a timespan " minutes" #:min-width 20) "|")
    timespan)))
@@ -38,9 +38,9 @@
   (let* ((result (map build-section entries))
          (entries (map first result))
          (time (map second result)))
-    (~a "* Essentials of Programming Languages\n"
-        "** Total Time: " (in-hours-and-minutes (foldl + 0 time)) "\n"
-        (string-join entries "\n"))))
+        (string-join entries "\n")))
+
+
 
 (define dates
   (list
@@ -98,6 +98,9 @@
          (list "Building Timetable Generator" (stamp 3 50 19 8 2020) (stamp 4 20 19 8 2020))
    ))))
 
+(define start-date (stamp 21 30 30 7 2020))
+(define last-date (last (last (last (last (rest (drop-right dates 1)))))))
+
 ;; TODO:
 ;; Breakdown of reading speed by every 100 pages:
 ;; 100/463 pages read in n pomodoros
@@ -105,6 +108,13 @@
 ;; Reading speed
 ;; Breakdown of time spent for exercises (by chapter and by 50 pomodoros?)
 
-(with-output-to-file "./timetable.org" (lambda () (display (build-table dates))) #:exists 'replace)
+(with-output-to-file "./timetable.org" (lambda () (display
+                                                   (string-join
+                                                    (list (~a "Start Date:" (date->string start-date))
+                                                          (~a "Elapsed Date:" (date->string last-date))
+                                                          (~a "Elapsed Time:"
+                                                              (quotient (span start-date last-date)
+                                                                 (* 24 60 60)))
+                                                   (build-table dates)) "\n"))) #:exists 'replace)
 
 
