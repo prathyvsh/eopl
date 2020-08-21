@@ -16,7 +16,9 @@
         (if (eq? m 0) "" (~a " " m (if (eq? m 1) " minute" " minutes"))))))
 
 (define (span start end)
-  (- (date->seconds end) (date->seconds start)))
+  (let ((timespan (- (date->seconds end) (date->seconds start))))
+    (if (< timespan 0) (error "Please provide a proper start and end date")
+        timespan)))
 
 (define (build-row entry)
   (let* ((start (second entry))
@@ -86,7 +88,7 @@
           (list "Exercise 2.2.6" (stamp 21 17 21 8 2020) (stamp 21 47 21 8 2020))
           (list "Exercise 2.2.7" (stamp 22 39 21 8 2020) (stamp 23 09 21 8 2020))
           (list "Exercise 2.2.7" (stamp 23 30 21 8 2020) (stamp 00 00 22 8 2020))
-          (list "Exercise 2.2.7" (stamp 23 50 22 8 2020) (stamp 01 05 22 8 2020))
+          (list "Exercise 2.2.7" (stamp 00 50 22 8 2020) (stamp 01 05 22 8 2020))
           (list "Exercise 2.2.8" (stamp 01 10 22 8 2020) (stamp 01 20 22 8 2020))
    ))
    
