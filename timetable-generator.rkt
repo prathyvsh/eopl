@@ -38,9 +38,8 @@
   (let* ((result (map build-section entries))
          (entries (map first result))
          (time (map second result)))
-        (string-join entries "\n")))
-
-
+ (~a (~a "** Total Time: " (in-hours-and-minutes (foldl + 0 time)) "\n")
+    (string-join entries "\n"))))
 
 (define dates
   (list
@@ -110,11 +109,13 @@
 
 (with-output-to-file "./timetable.org" (lambda () (display
                                                    (string-join
-                                                    (list (~a "Start Date:" (date->string start-date))
-                                                          (~a "Elapsed Date:" (date->string last-date))
-                                                          (~a "Elapsed Time:"
+                                                    (list
+                                                       (~a "* Essentials of Programming Languages\n")
+                                                     (~a "**Start Date**: " (date->string start-date))
+                                                          (~a "**Latest Work Date**: " (date->string last-date))
+                                                          (~a "**Elapsed Time**: "
                                                               (quotient (span start-date last-date)
-                                                                 (* 24 60 60)))
+                                                                 (* 24 60 60)) " days")
                                                    (build-table dates)) "\n"))) #:exists 'replace)
 
 
