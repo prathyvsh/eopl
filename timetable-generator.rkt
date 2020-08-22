@@ -4,7 +4,7 @@
 (require racket/format)
 
 (define (stamp hour min day month year)
-  (date 00 min hour day month year 0 0 0 19800))
+  (date* 00 min hour day month year 0 0 0 19800 0 "IST"))
 
 (define (in-minutes seconds)
   (/ seconds 60))
@@ -101,8 +101,58 @@
          (list "Building Timetable Generator" (stamp 3 50 19 8 2020) (stamp 4 20 19 8 2020))
    ))))
 
-(define start-date (stamp 21 30 30 7 2020))
+(define start-date (stamp 00 00 27 7 2020))
 (define last-date (last (last (last (last (rest (drop-right dates 1)))))))
+(define elapsed-days (quotient (span start-date last-date) (* 24 60 60)))
+
+(define (gen-dates from days)
+  (map (lambda (n) (seconds->date (+ (date->seconds from) (* n 24 60 60)))) (range 0 (+ elapsed-days 1))))
+
+(define (partition lst size repeat)
+  (cond ((null? lst) '())
+      ((> size (length lst)) (list lst))
+  (else (let-values (((part1 part2) (split-at lst size)))
+    (cons (append part1 (if (>= (length part2) repeat) (take part2 repeat) '()))
+          (partition part2 size repeat))))))
+
+(define date-ranges (drop-right (partition (gen-dates start-date elapsed-days) 1 1) 1))
+
+(define (in-range start end log)
+              (let ((date (second log)))
+                (and (< (date->seconds start) (date->seconds date)) (<= (date->seconds date) (date->seconds end)))))
+
+(define (time-in-range logs range)
+  (let ((start (first range))
+        (end (second range)))
+    (filter (lambda (log) (in-range start end log)) logs)))
+
+(define logged-dates (append-map (lambda (n) (first (rest n))) dates))
+
+(define month-names '("January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December"))
+
+(define (format-date date)
+  (~a (date-day date) " " (list-ref month-names (- (date-month date) 1)) " " (date-year date)))
+
+(define (format-week-entry-row row)
+  (let ((date (first row))
+        (length (second row)))
+  (~a "| " (date->string date) " | " length " |")))
+
+(define (collect-values logs range)
+  (list (first range) (length (time-in-range logs range))))
+
+(define (find-timings logs ranges)
+  (map (lambda (range) (collect-values logs range)) ranges))
+
+(define week-partition (partition (find-timings logged-dates date-ranges) 7 0))
+
+(define weekly-breakdown
+(string-join (map (lambda (ranges index)
+               (~a "| Week " index " | " 
+               (foldl + 0 (map second ranges)) " |\n"
+               (string-join (map format-week-entry-row ranges) "\n"))) week-partition (range 1 (+ 1 (length week-partition)))) "\n"))
+
+              
 
 ;; TODO:
 ;; Breakdown of reading speed by every 100 pages:
@@ -118,8 +168,8 @@
                                                      (~a "*Start Date*: " (date->string start-date))
                                                           (~a "*Latest Work Date*: " (date->string last-date))
                                                           (~a "*Elapsed Time*: "
-                                                              (quotient (span start-date last-date)
-                                                                 (* 24 60 60)) " days")
-                                                   (build-table dates)) "\n"))) #:exists 'replace)
-
+                                                              elapsed-days " days")
+                                                   (build-table dates)
+                                                   "** Weekly Breakdown"
+                                                   weekly-breakdown) "\n"))) #:exists 'replace)
 
