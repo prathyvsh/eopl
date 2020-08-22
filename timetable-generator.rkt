@@ -111,7 +111,8 @@
          (list "Adding Weekly Breakdown" (stamp 00 00 23 8 2020) (stamp 00 30 23 8 2020))
    ))))
 
-(define start-date (stamp 00 00 27 7 2020))
+(define start-date (stamp 00 00 30 7 2020))
+(define week-start-date (stamp 00 00 27 7 2020))
 (define last-date (last (last (last (last (rest (drop-right dates 1)))))))
 (define elapsed-days (quotient (span start-date last-date) (* 24 60 60)))
 
@@ -125,7 +126,7 @@
     (cons (append part1 (if (>= (length part2) repeat) (take part2 repeat) '()))
           (partition part2 size repeat))))))
 
-(define date-ranges (drop-right (partition (gen-dates start-date elapsed-days) 1 1) 1))
+(define date-ranges (drop-right (partition (gen-dates week-start-date elapsed-days) 1 1) 1))
 
 (define (in-range start end log)
               (let ((date (second log)))
