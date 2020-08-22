@@ -55,33 +55,33 @@
 | Building Timetable Generator | 30 minutes          |
 ** Weekly Breakdown
 | *Week 1* | *0 hours 30 minutes* |
-| Monday, July 27th, 2020 | 0 |
-| Tuesday, July 28th, 2020 | 0 |
-| Wednesday, July 29th, 2020 | 0 |
-| Thursday, July 30th, 2020 | 30 |
-| Friday, July 31st, 2020 | 0 |
-| Saturday, August 1st, 2020 | 0 |
-| Sunday, August 2nd, 2020 | 0 |
+| Monday, July 27th, 2020 | 0 hours |
+| Tuesday, July 28th, 2020 | 0 hours |
+| Wednesday, July 29th, 2020 | 0 hours |
+| Thursday, July 30th, 2020 | 0 hours 30 minutes |
+| Friday, July 31st, 2020 | 0 hours |
+| Saturday, August 1st, 2020 | 0 hours |
+| Sunday, August 2nd, 2020 | 0 hours |
 | *Week 2* | *1 hour* |
-| Monday, August 3rd, 2020 | 0 |
-| Tuesday, August 4th, 2020 | 0 |
-| Wednesday, August 5th, 2020 | 0 |
-| Thursday, August 6th, 2020 | 60 |
-| Friday, August 7th, 2020 | 0 |
-| Saturday, August 8th, 2020 | 0 |
-| Sunday, August 9th, 2020 | 0 |
+| Monday, August 3rd, 2020 | 0 hours |
+| Tuesday, August 4th, 2020 | 0 hours |
+| Wednesday, August 5th, 2020 | 0 hours |
+| Thursday, August 6th, 2020 | 1 hour |
+| Friday, August 7th, 2020 | 0 hours |
+| Saturday, August 8th, 2020 | 0 hours |
+| Sunday, August 9th, 2020 | 0 hours |
 | *Week 3* | *4 hours* |
-| Monday, August 10th, 2020 | 0 |
-| Tuesday, August 11th, 2020 | 0 |
-| Wednesday, August 12th, 2020 | 0 |
-| Thursday, August 13th, 2020 | 0 |
-| Friday, August 14th, 2020 | 0 |
-| Saturday, August 15th, 2020 | 30 |
-| Sunday, August 16th, 2020 | 210 |
+| Monday, August 10th, 2020 | 0 hours |
+| Tuesday, August 11th, 2020 | 0 hours |
+| Wednesday, August 12th, 2020 | 0 hours |
+| Thursday, August 13th, 2020 | 0 hours |
+| Friday, August 14th, 2020 | 0 hours |
+| Saturday, August 15th, 2020 | 0 hours 30 minutes |
+| Sunday, August 16th, 2020 | 3 hours 30 minutes |
 | *Week 4* | *9 hours 30 minutes* |
-| Monday, August 17th, 2020 | 90 |
-| Tuesday, August 18th, 2020 | 60 |
-| Wednesday, August 19th, 2020 | 180 |
-| Thursday, August 20th, 2020 | 90 |
-| Friday, August 21st, 2020 | 120 |
-| Saturday, August 22nd, 2020 | 30 |
+| Monday, August 17th, 2020 | 1 hour 30 minutes |
+| Tuesday, August 18th, 2020 | 1 hour |
+| Wednesday, August 19th, 2020 | 3 hours |
+| Thursday, August 20th, 2020 | 1 hour 30 minutes |
+| Friday, August 21st, 2020 | 2 hours |
+| Saturday, August 22nd, 2020 | 0 hours 30 minutes |

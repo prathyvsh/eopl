@@ -20,12 +20,18 @@
     (if (< timespan 0) (error "Please provide a proper start and end date")
         timespan)))
 
-(define (build-row entry)
+(define (parse-row entry)
   (let* ((start (second entry))
         (end (third entry))
         (timespan (in-minutes (span start end))))
+    (list (first entry) timespan)))
+
+(define (build-row entry)
+  (let* ((row (parse-row entry))
+         (title (first row))
+         (timespan (second row)))
   (list
-   (~a (~a "| " (first entry) #:min-width 24) " | " (~a timespan " minutes" #:min-width 20) "|")
+   (~a (~a "| " title #:min-width 24) " | " (~a timespan " minutes" #:min-width 20) "|")
    timespan)))
 
 (define (build-section section)
@@ -124,7 +130,8 @@
 (define (time-in-range logs range)
   (let ((start (first range))
         (end (second range)))
-    (filter (lambda (log) (in-range start end log)) logs)))
+    (map (compose second parse-row)
+         (filter (lambda (log) (in-range start end log)) logs))))
 
 (define logged-dates (append-map (lambda (n) (first (rest n))) dates))
 
@@ -136,10 +143,10 @@
 (define (format-week-entry-row row)
   (let ((date (first row))
         (length (second row)))
-  (~a "| " (date->string date) " | " length " |")))
+  (~a "| " (date->string date) " | " (in-hours-and-minutes length) " |")))
 
 (define (collect-values logs range)
-  (list (first range) (length (time-in-range logs range))))
+  (list (first range) (foldl + 0 (time-in-range logs range))))
 
 (define (find-timings logs ranges)
   (map (lambda (range) (collect-values logs range)) ranges))
@@ -149,7 +156,7 @@
 (define weekly-breakdown
 (string-join (map (lambda (ranges index)
                (~a "| *Week " index "* | " 
-               "*" (foldl + 0 (map second ranges)) "* |\n"
+               "*" (in-hours-and-minutes (foldl + 0 (map second ranges))) "* |\n"
                (string-join (map format-week-entry-row ranges) "\n"))) week-partition (range 1 (+ 1 (length week-partition)))) "\n"))
 
               
