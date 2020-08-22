@@ -54,7 +54,7 @@
 | Building Timetable Generator | 30 minutes          |
 | Building Timetable Generator | 30 minutes          |
 ** Weekly Breakdown
-| *Week* *1 *| *1* |
+| *Week 1* | *1* |
 | Monday, July 27th, 2020 | 0 |
 | Tuesday, July 28th, 2020 | 0 |
 | Wednesday, July 29th, 2020 | 0 |
@@ -62,7 +62,7 @@
 | Friday, July 31st, 2020 | 0 |
 | Saturday, August 1st, 2020 | 0 |
 | Sunday, August 2nd, 2020 | 0 |
-| *Week* *2 *| *2* |
+| *Week 2* | *2* |
 | Monday, August 3rd, 2020 | 0 |
 | Tuesday, August 4th, 2020 | 0 |
 | Wednesday, August 5th, 2020 | 0 |
@@ -70,7 +70,7 @@
 | Friday, August 7th, 2020 | 0 |
 | Saturday, August 8th, 2020 | 0 |
 | Sunday, August 9th, 2020 | 0 |
-| *Week* *3 *| *14* |
+| *Week 3* | *14* |
 | Monday, August 10th, 2020 | 0 |
 | Tuesday, August 11th, 2020 | 0 |
 | Wednesday, August 12th, 2020 | 0 |
@@ -78,7 +78,7 @@
 | Friday, August 14th, 2020 | 0 |
 | Saturday, August 15th, 2020 | 2 |
 | Sunday, August 16th, 2020 | 12 |
-| *Week* *4 *| *26* |
+| *Week 4* | *26* |
 | Monday, August 17th, 2020 | 7 |
 | Tuesday, August 18th, 2020 | 2 |
 | Wednesday, August 19th, 2020 | 6 |
