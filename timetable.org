@@ -3,7 +3,7 @@
 *Start Date*: Sunday, July 27th, 2020
 *Latest Work Date*: Sunday, August 22nd, 2020
 *Elapsed Time*: 26 days
-** Total Time: 15 hours
+** Total Time: 17 hours
 | *Overview*             | *1 hour* |
 | Overview               | 30 minutes          |
 | Overview               | 30 minutes          |
@@ -46,13 +46,17 @@
 | Exercise 2.2.7         | 30 minutes          |
 | Exercise 2.2.7         | 20 minutes          |
 | Exercise 2.2.8         | 10 minutes          |
-| *Extras*               | *3 hours* |
+| *Extras*               | *5 hours* |
 | Reading List           | 30 minutes          |
 | Reading List           | 30 minutes          |
 | Building Timetable Generator | 30 minutes          |
 | Building Timetable Generator | 30 minutes          |
 | Building Timetable Generator | 30 minutes          |
 | Building Timetable Generator | 30 minutes          |
+| Adding Weekly Breakdown | 30 minutes          |
+| Adding Weekly Breakdown | 30 minutes          |
+| Adding Weekly Breakdown | 30 minutes          |
+| Adding Weekly Breakdown | 30 minutes          |
 ** Weekly Breakdown
 | *Week 1* | *0 hours 30 minutes* |
 | Monday, July 27th, 2020 | 0 hours |
@@ -78,10 +82,10 @@
 | Friday, August 14th, 2020 | 0 hours |
 | Saturday, August 15th, 2020 | 0 hours 30 minutes |
 | Sunday, August 16th, 2020 | 3 hours 30 minutes |
-| *Week 4* | *9 hours 30 minutes* |
+| *Week 4* | *11 hours 30 minutes* |
 | Monday, August 17th, 2020 | 1 hour 30 minutes |
 | Tuesday, August 18th, 2020 | 1 hour |
 | Wednesday, August 19th, 2020 | 3 hours |
 | Thursday, August 20th, 2020 | 1 hour 30 minutes |
 | Friday, August 21st, 2020 | 2 hours |
-| Saturday, August 22nd, 2020 | 0 hours 30 minutes |
+| Saturday, August 22nd, 2020 | 2 hours 30 minutes |

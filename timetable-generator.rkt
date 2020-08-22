@@ -105,6 +105,10 @@
          (list "Building Timetable Generator" (stamp 2 50 19 8 2020) (stamp 3 20 19 8 2020))
          (list "Building Timetable Generator" (stamp 3 20 19 8 2020) (stamp 3 50 19 8 2020))
          (list "Building Timetable Generator" (stamp 3 50 19 8 2020) (stamp 4 20 19 8 2020))
+         (list "Adding Weekly Breakdown" (stamp 21 46 22 8 2020) (stamp 22 16 22 8 2020))
+         (list "Adding Weekly Breakdown" (stamp 22 28 22 8 2020) (stamp 22 58 22 8 2020))
+         (list "Adding Weekly Breakdown" (stamp 23 06 22 8 2020) (stamp 23 36 22 8 2020))
+         (list "Adding Weekly Breakdown" (stamp 00 00 23 8 2020) (stamp 00 30 23 8 2020))
    ))))
 
 (define start-date (stamp 00 00 27 7 2020))
