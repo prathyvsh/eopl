@@ -148,8 +148,8 @@
 
 (define weekly-breakdown
 (string-join (map (lambda (ranges index)
-               (~a "| Week " index " | " 
-               (foldl + 0 (map second ranges)) " |\n"
+               (~a "| *Week " index " *| " 
+               "*" (foldl + 0 (map second ranges)) "* |\n"
                (string-join (map format-week-entry-row ranges) "\n"))) week-partition (range 1 (+ 1 (length week-partition)))) "\n"))
 
               
