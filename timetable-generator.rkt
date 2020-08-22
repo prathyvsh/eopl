@@ -106,7 +106,7 @@
 (define elapsed-days (quotient (span start-date last-date) (* 24 60 60)))
 
 (define (gen-dates from days)
-  (map (lambda (n) (seconds->date (+ (date->seconds from) (* n 24 60 60)))) (range 0 (+ elapsed-days 1))))
+  (map (lambda (n) (seconds->date (+ (date->seconds from) (* n 24 60 60)))) (range 0 (+ elapsed-days 2))))
 
 (define (partition lst size repeat)
   (cond ((null? lst) '())

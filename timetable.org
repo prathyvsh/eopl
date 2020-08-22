@@ -78,9 +78,10 @@
 | Friday, August 14th, 2020 | 0 |
 | Saturday, August 15th, 2020 | 2 |
 | Sunday, August 16th, 2020 | 12 |
-| *Week 4* | *26* |
+| *Week 4* | *28* |
 | Monday, August 17th, 2020 | 7 |
 | Tuesday, August 18th, 2020 | 2 |
 | Wednesday, August 19th, 2020 | 6 |
 | Thursday, August 20th, 2020 | 5 |
 | Friday, August 21st, 2020 | 6 |
+| Saturday, August 22nd, 2020 | 2 |
