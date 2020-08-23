@@ -18,38 +18,32 @@
                               ())
                           (31 () ())))) '(R R))
 
-(define (build-selector s slst errvalue)
-    (if (null? slst) errvalue
-          (if (equal? s (car slst)) '(lst)
-                 (if (equal? (build-selector s (cdr slst) errvalue) errvalue)
-                     errvalue
-                     (cons 'cdr (build-selector s (cdr slst) errvalue))))))
-
-(define (process-exp s exp errvalue)
-  (if (symbol? exp)
-      (if (equal? s exp) 'lst errvalue)
-       (if (null? exp) errvalue
-           (if (equal? (process-exp s (car exp) errvalue) errvalue)
-               (if (equal? (car&cdr-helper s (cdr exp) errvalue) errvalue)
-                   errvalue
-                   (list 'cdr (car&cdr-helper s (cdr exp) errvalue)))
-               (list 'car (process-exp s (car exp) errvalue))))))
-
 ;; s-exp: symbol | s-list
 ;; s-list: ({<s-exp>}*)
-(define (car&cdr-helper s slst errvalue)
+;; There is a reversal of operations happening when seeking
+;; for the match
+(define (visit-pattern s slst errvalue)
   (if (null? slst) errvalue
-  (if (equal? (process-exp s (car slst) errvalue) errvalue)
-      (if (equal? (car&cdr-helper s (cdr slst) errvalue) errvalue)
-          errvalue
-          (list 'cdr (car&cdr-helper s (cdr slst) errvalue)))
-      (process-exp s (car slst) errvalue))))
+      (if (symbol? slst)
+          (if (eq? s slst) '() errvalue)
+          (if (eq? (visit-pattern s (car slst) errvalue) errvalue)
+              (if (eq? (visit-pattern s (cdr slst) errvalue) errvalue)
+                  errvalue
+                  (cons 'cdr (visit-pattern s (cdr slst) errvalue)))
+              (cons 'car (visit-pattern s (car slst) errvalue))))))
+
+(define (reverse l)
+  (if (null? l) '()
+      (append (reverse (cdr l)) (list (car l)))))
+
+(define (nest l)
+  (if (null? l) '()
+      (if (null? (cdr l)) (car l)
+      (list (car l) (nest (cdr l))))))
 
 (define (car&cdr s slst errvalue)
-  (if (equal? (car&cdr-helper s slst errvalue) errvalue)
-      errvalue
-      (list 'lambda '(lst) (list 'car (car&cdr-helper s slst errvalue)))))
-      
+  (if (equal? (visit-pattern s slst errvalue) errvalue) errvalue
+  (list 'lambda '(lst) (nest (append (reverse (visit-pattern s slst errvalue)) '(lst))))))
 
 (equal? (car&cdr 'a '(a b c) 'fail) '(lambda (lst) (car lst)))
 (equal? (car&cdr 'a '() 'fail) 'fail)
