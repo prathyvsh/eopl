@@ -96,6 +96,9 @@
           (list "Exercise 2.2.7" (stamp 23 30 21 8 2020) (stamp 00 00 22 8 2020))
           (list "Exercise 2.2.7" (stamp 00 50 22 8 2020) (stamp 01 10 22 8 2020))
           (list "Exercise 2.2.8" (stamp 01 10 22 8 2020) (stamp 01 20 22 8 2020))
+          (list "Exercise 2.2.8" (stamp 21 06 23 8 2020) (stamp 21 27 23 8 2020))
+          (list "Exercise 2.2.9" (stamp 21 27 23 8 2020) (stamp 21 36 23 8 2020))
+          (list "Exercise 2.2.9" (stamp 21 46 23 8 2020) (stamp 22 16 23 8 2020))
    ))
    
    (list "Extras"
@@ -114,7 +117,7 @@
 (define start-date (stamp 00 00 30 7 2020))
 (define week-start-date (stamp 00 00 27 7 2020))
 (define last-date (last (last (last (last (rest (drop-right dates 1)))))))
-(define elapsed-days (quotient (span start-date last-date) (* 24 60 60)))
+(define elapsed-days (quotient (span week-start-date last-date) (* 24 60 60)))
 
 (define (gen-dates from days)
   (map (lambda (n) (seconds->date (+ (date->seconds from) (* n 24 60 60)))) (range 0 (+ elapsed-days 2))))
