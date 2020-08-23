@@ -1,9 +1,9 @@
 * Essentials of Programming Languages
 
 *Start Date*: Sunday, July 30th, 2020
-*Latest Work Date*: Sunday, August 23rd, 2020
-*Elapsed Time*: 27 days
-** Total Time: 18 hours 30 minutes
+*Latest Work Date*: Sunday, August 24th, 2020
+*Elapsed Time*: 28 days
+** Total Time: 19 hours
 | *Overview*             | *1 hour* |
 | Overview               | 30 minutes          |
 | Overview               | 30 minutes          |
@@ -24,7 +24,7 @@
 | Exercise 1.3.4 - 1.3.6 | 7 minutes           |
 | Section 1.3            | 23 minutes          |
 | Exercise 1.3.7         | 11 minutes          |
-| *Section 2*            | *7 hours 49 minutes* |
+| *Section 2*            | *8 hours 19 minutes* |
 | Section 2.1            | 19 minutes          |
 | Section 2.1            | 5 minutes           |
 | Exercise 2.1.1         | 1 minutes           |
@@ -48,6 +48,7 @@
 | Exercise 2.2.8         | 10 minutes          |
 | Exercise 2.2.8         | 21 minutes          |
 | Exercise 2.2.9         | 9 minutes           |
+| Exercise 2.2.9         | 30 minutes          |
 | Exercise 2.2.9         | 30 minutes          |
 | Exercise 2.2.9         | 30 minutes          |
 | *Extras*               | *5 hours* |
@@ -86,11 +87,13 @@
 | Friday, August 14th, 2020 | 0 hours |
 | Saturday, August 15th, 2020 | 0 hours 30 minutes |
 | Sunday, August 16th, 2020 | 3 hours 30 minutes |
-| *Week 4* | *13 hours* |
+| *Week 4* | *13 hours 30 minutes* |
 | Monday, August 17th, 2020 | 1 hour 30 minutes |
 | Tuesday, August 18th, 2020 | 1 hour |
 | Wednesday, August 19th, 2020 | 3 hours |
 | Thursday, August 20th, 2020 | 1 hour 30 minutes |
 | Friday, August 21st, 2020 | 2 hours |
 | Saturday, August 22nd, 2020 | 2 hours 30 minutes |
-| Sunday, August 23rd, 2020 | 1 hour 30 minutes |
+| Sunday, August 23rd, 2020 | 2 hours |
+| *Week 5* | *0 hours* |
+| Monday, August 24th, 2020 | 0 hours |
