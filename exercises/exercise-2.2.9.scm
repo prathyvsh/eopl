@@ -46,8 +46,6 @@
   (if (equal? (visit-pattern s slst errvalue) errvalue) errvalue
   (list 'lambda '(lst) (nest (append (reverse (visit-pattern s slst errvalue)) '(lst))))))
 
-(time (car&cdr-try1 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
-
 (equal? (car&cdr-try1 'a '(a b c) 'fail) '(lambda (lst) (car lst)))
 (equal? (car&cdr-try1 'a '() 'fail) 'fail)
 (equal? (car&cdr-try1 'a '(() () () a) 'fail) '(lambda (lst) (car (cdr (cdr (cdr lst))))))
@@ -61,16 +59,23 @@
 ;; to do O(n) traversals to get the correct ordering. I’m attempting to make the order correct
 ;; in a single pass with my next attempt.
 
+(define (reverse-nest el l)
+  (if (empty? l) (list 'lst)
+      (if (empty? (cdr l))
+          (if (list? (car l)) (reverse-nest el (car l))
+              (list el (car l)))
+      (list (car l) (reverse-nest el (cdr l))))))
+
 (define (join-scans car-scan cdr-scan errvalue)
   (if (and (equal? car-scan errvalue) (equal? cdr-scan errvalue))
       errvalue
       (if (equal? car-scan errvalue)
-          (append cdr-scan '(cdr))
-          (append car-scan '(car)))))
+          (reverse-nest 'cdr cdr-scan)
+          (reverse-nest 'car car-scan))))
 
 (define (scan-sexp s sexp errvalue)
   (if (symbol? sexp)
-      (if (equal? s sexp)'(lst) errvalue)
+      (if (equal? s sexp)'() errvalue)
       (if (equal? (access-pattern s sexp errvalue) errvalue)
           errvalue
           (access-pattern s sexp errvalue))))
@@ -82,11 +87,43 @@
 
 (define (car&cdr s slst errvalue)
   (if (equal? (access-pattern s slst errvalue) errvalue) errvalue
-      (list 'lambda '(lst) (access-pattern s slst errvalue))))
+      (list 'lambda '(lst) (list 'car (access-pattern s slst errvalue)))))
 
-(car&cdr 'a '() 'fail)
-(car&cdr 'a '(() ((a))) 'fail)
-(car&cdr 'a '(() (a)) 'fail)
-(car&cdr 'a '(() (b) a) 'fail)
-(car&cdr 'a '(b c d () e (a)) 'fail)
-(car&cdr 'a '(() () a) 'fail)
+(equal? (car&cdr 'a '() 'fail) 'fail)
+
+(define-namespace-anchor anc)
+(define ns (namespace-anchor->namespace anc))
+
+(define (eval-test quoted-fn-producer key data)
+   (let* ((fn (eval (quoted-fn-producer key data 'fail) ns)))
+     (equal? (fn data) key)))
+
+(eval-test car&cdr 'a '(() ((a))))
+(eval-test car&cdr 'a '(() (a)))
+(eval-test car&cdr 'a '(() (b) a))
+(eval-test car&cdr 'a '(b c d () e (a)))
+(eval-test car&cdr 'a '(() () a))
+
+(time (car&cdr-try1 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
+(time (car&cdr 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
+
+;; This definition works by using the reverse-nest function but I think it is much better
+;; to use tail recursion here as it naturally models it as (c (b (a))) instead of
+;; (a (b (c))) which is the model of traversal for normal recursion in Racket.
+
+(define (car&cdr-tr s slst errvalue)
+  (if (equal? (access-pattern-tr s slst errvalue) errvalue) errvalue
+      (list 'lambda '(lst) (list 'car (access-pattern-tr s slst errvalue)))))
+
+(define (scan-sexp-tr s sexp errvalue)
+  (if (symbol? sexp)
+      (if (equal? s sexp)'() errvalue)
+      (if (equal? (access-pattern-tr s sexp errvalue) errvalue)
+          errvalue
+          (access-pattern-tr s sexp errvalue))))
+
+(define (access-pattern-tr s slst errvalue store)
+  (if (null? slst) errvalue
+          (if (equal? (scan-sexp-tr s (car slst) errvalue) errvalue)
+                      (scan-sexp-tr s (cdr slst) errvalue store)
+                      (scan-sexp-tr s (cdr slst) errvalue))))
