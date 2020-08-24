@@ -1,4 +1,5 @@
 #lang scheme
+(require racket/trace)
 
 (define (path n bst)
   (if (null? bst) (error "Couldn't find the element in the binary search tree")
@@ -30,7 +31,7 @@
               (if (eq? (visit-pattern s (cdr slst) errvalue) errvalue)
                   errvalue
                   (cons 'cdr (visit-pattern s (cdr slst) errvalue)))
-              (cons 'car (visit-pattern s (car slst) errvalue))))))
+                  (cons 'car (visit-pattern s (car slst) errvalue))))))
 
 (define (reverse l)
   (if (null? l) '()
@@ -41,15 +42,51 @@
       (if (null? (cdr l)) (car l)
       (list (car l) (nest (cdr l))))))
 
-(define (car&cdr s slst errvalue)
+(define (car&cdr-try1 s slst errvalue)
   (if (equal? (visit-pattern s slst errvalue) errvalue) errvalue
   (list 'lambda '(lst) (nest (append (reverse (visit-pattern s slst errvalue)) '(lst))))))
 
-(equal? (car&cdr 'a '(a b c) 'fail) '(lambda (lst) (car lst)))
-(equal? (car&cdr 'a '() 'fail) 'fail)
-(equal? (car&cdr 'a '(() () () a) 'fail) '(lambda (lst) (car (cdr (cdr (cdr lst))))))
-(equal? (car&cdr 'c '(a b c) 'fail) '(lambda (lst) (car (cdr (cdr lst)))))
-(equal? (car&cdr 'apple '((apple)) 'fail) '(lambda (lst) (car (car lst))))
-(equal? (car&cdr 'dog '(cat lion (fish dog) pig) 'fail) '(lambda (lst)
+(time (car&cdr-try1 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
+
+(equal? (car&cdr-try1 'a '(a b c) 'fail) '(lambda (lst) (car lst)))
+(equal? (car&cdr-try1 'a '() 'fail) 'fail)
+(equal? (car&cdr-try1 'a '(() () () a) 'fail) '(lambda (lst) (car (cdr (cdr (cdr lst))))))
+(equal? (car&cdr-try1 'c '(a b c) 'fail) '(lambda (lst) (car (cdr (cdr lst)))))
+(equal? (car&cdr-try1 'apple '((apple)) 'fail) '(lambda (lst) (car (car lst))))
+(equal? (car&cdr-try1 'dog '(cat lion (fish dog) pig) 'fail) '(lambda (lst)
                                                            (car (cdr (car (cdr (cdr lst)))))))
-(equal? (car&cdr 'a '(b c) 'fail) 'fail)
+(equal? (car&cdr-try1 'a '(b c) 'fail) 'fail)
+
+;; First try while did give the correct answers, makes use of reverse and nets which needs to
+;; to do O(n) traversals to get the correct ordering. I’m attempting to make the order correct
+;; in a single pass with my next attempt.
+
+(define (join-scans car-scan cdr-scan errvalue)
+  (if (and (equal? car-scan errvalue) (equal? cdr-scan errvalue))
+      errvalue
+      (if (equal? car-scan errvalue)
+          (append cdr-scan '(cdr))
+          (append car-scan '(car)))))
+
+(define (scan-sexp s sexp errvalue)
+  (if (symbol? sexp)
+      (if (equal? s sexp)'(lst) errvalue)
+      (if (equal? (access-pattern s sexp errvalue) errvalue)
+          errvalue
+          (access-pattern s sexp errvalue))))
+
+(define (access-pattern s slst errvalue)
+  (if (null? slst) errvalue
+          (join-scans (scan-sexp s (car slst) errvalue)
+                      (scan-sexp s (cdr slst) errvalue) errvalue)))
+
+(define (car&cdr s slst errvalue)
+  (if (equal? (access-pattern s slst errvalue) errvalue) errvalue
+      (list 'lambda '(lst) (access-pattern s slst errvalue))))
+
+(car&cdr 'a '() 'fail)
+(car&cdr 'a '(() ((a))) 'fail)
+(car&cdr 'a '(() (a)) 'fail)
+(car&cdr 'a '(() (b) a) 'fail)
+(car&cdr 'a '(b c d () e (a)) 'fail)
+(car&cdr 'a '(() () a) 'fail)
