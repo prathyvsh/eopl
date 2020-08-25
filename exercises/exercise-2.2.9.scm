@@ -1,5 +1,4 @@
 #lang scheme
-(require racket/trace)
 
 (define (path n bst)
   (if (null? bst) (error "Couldn't find the element in the binary search tree")
@@ -181,24 +180,12 @@
 (equal? (car&cdr2 'a '((a)) 'fail) '(compose car car))
 (equal? (car&cdr2 'a '(() () () a) 'fail) '(compose car (compose cdr (compose cdr cdr))))
 
-#lang scheme
-
 (define (build-application-list lst)
   (if (null? lst) (lambda (x) x)
       (lambda (val) ((car lst) ((build-application-list (cdr lst)) val)))))
 
 (define compose (lambda x (build-application-list x)))
 
-;(compose car cdr cdr) => (car (cdr (cdr x)))
-;(compose-rev car cdr cdr) => (cdr (cdr (cdr x)))
-
-(define (compose-order l)
-  (if (null? l) '(ident)
-      (list (compose-order (cdr l)) (car l))))
-
-(define (compose-order2 l)
-  (if (null? l) '(ident)
-      (list (car l) (compose-order2 (cdr l)))))
 
 (define (makezero x) 0)
 (define (add1 x) (+ 1 x))
@@ -208,3 +195,32 @@
 (equal? ((compose car) '(a b c d)) 'a)
 (equal? ((compose car cdr cdr) '(a b c d)) 'c)
 (equal? ((compose double add1 makezero) 1) 2)
+
+(define (sort-fn a b) (if (< a b) (list a b) (list b a)))
+
+(define (sort-once lon)
+  (if (null? lon) '()
+      (if (null? (cdr lon)) (list (car lon))
+          (if (null? (cddr lon)) (sort-fn (car lon) (cadr lon))
+              (append (sort-fn (car lon) (cadr lon))
+                      (sort-once (cddr lon)))))))
+
+(define (sorted-list result lon)
+  (if (> (length result) 2)
+      (append (list (car result))
+              (sort (cons (cadr result) (cddr lon))))
+      (append (list (car result))
+              (sort (cdr lon)))))
+
+(define (sort lon)
+  (if (null? lon) '()
+     (sorted-list (sort-once lon) lon)))
+
+(sort '())
+(sort '(1))
+(sort '(1 2))
+(sort '(2 1))
+(sort '(1 3 2))
+(sort '(2 1 3))
+(sort '(3 1 2))
+(sort '(3 2 1))
