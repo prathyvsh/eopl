@@ -180,3 +180,31 @@
 (equal? (car&cdr2 'a '(b c) 'fail) 'fail)
 (equal? (car&cdr2 'a '((a)) 'fail) '(compose car car))
 (equal? (car&cdr2 'a '(() () () a) 'fail) '(compose car (compose cdr (compose cdr cdr))))
+
+#lang scheme
+
+(define (build-application-list lst)
+  (if (null? lst) (lambda (x) x)
+      (lambda (val) ((car lst) ((build-application-list (cdr lst)) val)))))
+
+(define compose (lambda x (build-application-list x)))
+
+;(compose car cdr cdr) => (car (cdr (cdr x)))
+;(compose-rev car cdr cdr) => (cdr (cdr (cdr x)))
+
+(define (compose-order l)
+  (if (null? l) '(ident)
+      (list (compose-order (cdr l)) (car l))))
+
+(define (compose-order2 l)
+  (if (null? l) '(ident)
+      (list (car l) (compose-order2 (cdr l)))))
+
+(define (makezero x) 0)
+(define (add1 x) (+ 1 x))
+(define (double x) (* 2 x))
+
+(equal? ((compose) '(a b c d)) '(a b c d))
+(equal? ((compose car) '(a b c d)) 'a)
+(equal? ((compose car cdr cdr) '(a b c d)) 'c)
+(equal? ((compose double add1 makezero) 1) 2)

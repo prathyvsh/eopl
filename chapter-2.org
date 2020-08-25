@@ -67,4 +67,23 @@ Think this is a good point at which to refer how ambiguity can arise in a contex
 * Structural Recursion *
 When defining a program based on structural induction, the structure of the program should be patterned after the structure of the data.
 
+* Exercise
+Exercises in this chapter are worth doing, especially the Exercise 2.2.9 as this feels like a lead up to constructing
+structures which would be used in building up an interpreter later in the book.
+
+The 2nd part in Exercise 2.2.9 is a bit challenging and made me think about the differences in order of construction
+in structural recursion vs. tail recursion.
+
+* Associativitiy of composition
+
+In the previous examples there was a problem of having wrong nesting when trying to build up the path trace in a list.
+This meant that a structural recursion would yield (((() c) b) a) instead of (c (b (a ()))). This meant that the path
+needs to be reversed to achieve the proper context or coupling for the elements in a list. This can be achieved using
+tail recursion. Now, the same bracketing when composing and applying to an argument yields the same result. I realised
+this when working through Example 2.2.9/4 where I found out that the reverse sequence gets executed when creating a
+series of compositions. This means that when the operation is associative, the bracketing order doesn't matter
+which is indeed a trivial observation, but the distinction here is, even nesting doesn't make a difference.
+That is (composition ident c b a) can be represented as both (((ident c) b) a) and (ident (c (b a)))
+
+I realized that 
 
