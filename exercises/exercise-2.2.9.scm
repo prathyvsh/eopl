@@ -42,18 +42,18 @@
       (if (null? (cdr l)) (car l)
       (list (car l) (nest (cdr l))))))
 
-(define (car&cdr-try1 s slst errvalue)
+(define (car&cdr s slst errvalue)
   (if (equal? (visit-pattern s slst errvalue) errvalue) errvalue
   (list 'lambda '(lst) (nest (append (reverse (visit-pattern s slst errvalue)) '(lst))))))
 
-(equal? (car&cdr-try1 'a '(a b c) 'fail) '(lambda (lst) (car lst)))
-(equal? (car&cdr-try1 'a '() 'fail) 'fail)
-(equal? (car&cdr-try1 'a '(() () () a) 'fail) '(lambda (lst) (car (cdr (cdr (cdr lst))))))
-(equal? (car&cdr-try1 'c '(a b c) 'fail) '(lambda (lst) (car (cdr (cdr lst)))))
-(equal? (car&cdr-try1 'apple '((apple)) 'fail) '(lambda (lst) (car (car lst))))
-(equal? (car&cdr-try1 'dog '(cat lion (fish dog) pig) 'fail) '(lambda (lst)
+(equal? (car&cdr 'a '(a b c) 'fail) '(lambda (lst) (car lst)))
+(equal? (car&cdr 'a '() 'fail) 'fail)
+(equal? (car&cdr 'a '(() () () a) 'fail) '(lambda (lst) (car (cdr (cdr (cdr lst))))))
+(equal? (car&cdr 'c '(a b c) 'fail) '(lambda (lst) (car (cdr (cdr lst)))))
+(equal? (car&cdr 'apple '((apple)) 'fail) '(lambda (lst) (car (car lst))))
+(equal? (car&cdr 'dog '(cat lion (fish dog) pig) 'fail) '(lambda (lst)
                                                            (car (cdr (car (cdr (cdr lst)))))))
-(equal? (car&cdr-try1 'a '(b c) 'fail) 'fail)
+(equal? (car&cdr 'a '(b c) 'fail) 'fail)
 
 ;; First try while did give the correct answers, makes use of reverse and nets which needs to
 ;; to do O(n) traversals to get the correct ordering. I’m attempting to make the order correct
@@ -76,20 +76,20 @@
 (define (scan-sexp s sexp errvalue)
   (if (symbol? sexp)
       (if (equal? s sexp)'() errvalue)
-      (if (equal? (access-pattern s sexp errvalue) errvalue)
-          errvalue
-          (access-pattern s sexp errvalue))))
+      (let ((result (access-pattern s sexp errvalue)))
+      (if (equal? result errvalue) errvalue result))))
 
 (define (access-pattern s slst errvalue)
   (if (null? slst) errvalue
           (join-scans (scan-sexp s (car slst) errvalue)
                       (scan-sexp s (cdr slst) errvalue) errvalue)))
 
-(define (car&cdr s slst errvalue)
-  (if (equal? (access-pattern s slst errvalue) errvalue) errvalue
-      (list 'lambda '(lst) (list 'car (access-pattern s slst errvalue)))))
+(define (car&cdr-try1 s slst errvalue)
+  (let ((result (access-pattern s slst errvalue)))
+  (if (equal? result errvalue) errvalue
+      (list 'lambda '(lst) (list 'car result)))))
 
-(equal? (car&cdr 'a '() 'fail) 'fail)
+(equal? (car&cdr-try1 'a '() 'fail) 'fail)
 
 (define-namespace-anchor anc)
 (define ns (namespace-anchor->namespace anc))
@@ -98,32 +98,48 @@
    (let* ((fn (eval (quoted-fn-producer key data 'fail) ns)))
      (equal? (fn data) key)))
 
-(eval-test car&cdr 'a '(() ((a))))
-(eval-test car&cdr 'a '(() (a)))
-(eval-test car&cdr 'a '(() (b) a))
-(eval-test car&cdr 'a '(b c d () e (a)))
-(eval-test car&cdr 'a '(() () a))
+(eval-test car&cdr-try1 'a '(() ((a))))
+(eval-test car&cdr-try1 'a '(() (a)))
+(eval-test car&cdr-try1 'a '(() (b) a))
+(eval-test car&cdr-try1 'a '(b c d () e (a)))
+(eval-test car&cdr-try1 'a '(() () a))
 
-(time (car&cdr-try1 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
-(time (car&cdr 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
 
 ;; This definition works by using the reverse-nest function but I think it is much better
 ;; to use tail recursion here as it naturally models it as (c (b (a))) instead of
 ;; (a (b (c))) which is the model of traversal for normal recursion in Racket.
 
+(define (get-result test errvalue)
+  (if (equal? (cadr test) errvalue)
+      errvalue
+      (list 'lambda '(lst) (caar test))))
+         
 (define (car&cdr-tr s slst errvalue)
-  (if (equal? (access-pattern-tr s slst errvalue) errvalue) errvalue
-      (list 'lambda '(lst) (list 'car (access-pattern-tr s slst errvalue)))))
+  (get-result (access-pattern-tr s slst errvalue (list '(lst) errvalue)) errvalue))
 
-(define (scan-sexp-tr s sexp errvalue)
+(define (scan-sexp-tr s sexp errvalue store)
   (if (symbol? sexp)
-      (if (equal? s sexp)'() errvalue)
-      (if (equal? (access-pattern-tr s sexp errvalue) errvalue)
-          errvalue
-          (access-pattern-tr s sexp errvalue))))
+      (if (equal? s sexp) (access-pattern-tr s '() errvalue  (list (first store) 'success)) (list (first store) errvalue))
+      (let ((result (access-pattern-tr s sexp errvalue store)))
+      (if (equal? (cadr result) errvalue)
+          (list (first store) errvalue)
+          result))))
 
 (define (access-pattern-tr s slst errvalue store)
-  (if (null? slst) errvalue
-          (if (equal? (scan-sexp-tr s (car slst) errvalue) errvalue)
-                      (scan-sexp-tr s (cdr slst) errvalue store)
-                      (scan-sexp-tr s (cdr slst) errvalue))))
+  (if (null? slst) store
+      (let ((result (scan-sexp-tr s (car slst) errvalue (list (list (cons 'car (first store))) (second store)))))
+          (if (equal? (cadr result) errvalue)
+                      (scan-sexp-tr s (cdr slst) errvalue (list (list (cons 'cdr (first store))) (second store)))
+                      result))))
+
+(eval-test car&cdr-tr 'a '(() ((a))))
+(eval-test car&cdr-tr 'a '(() (a)))
+(eval-test car&cdr-tr 'a '(() (b) a))
+(eval-test car&cdr-tr 'a '(b c d () e (a)))
+(eval-test car&cdr-tr 'a '(() () a))
+
+
+(time (car&cdr 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
+(time (car&cdr-try1 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
+(time (car&cdr-tr 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
+ 
