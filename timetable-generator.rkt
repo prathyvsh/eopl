@@ -113,8 +113,9 @@
           (list "Exercise 2.2.9" (stamp 4 50 25 8 2020) (stamp 5 20 25 8 2020))
           (list "Exercise 2.2.9" (stamp 20 34 25 8 2020) (stamp 21 04 25 8 2020))
           (list "Exercise 2.2.9" (stamp 21 07 25 8 2020) (stamp 21 37 25 8 2020))
-          (list "Exercise 2.2.9" (stamp 21 37 25 8 2020) (stamp 21 51 25 8 2020))
-          (list "Exercise 2.2.10" (stamp 21 51 25 8 2020) (stamp 22 07 25 8 2020))
+          (list "Exercise 2.2.9 - 2" (stamp 21 37 25 8 2020) (stamp 21 51 25 8 2020))
+          (list "Exercise 2.2.9 - 3" (stamp 21 51 25 8 2020) (stamp 22 07 25 8 2020))
+          (list "Exercise 2.2.9 - 4" (stamp 22 08 25 8 2020) (stamp 22 38 25 8 2020))
    ))
    
    (list "Extras"
