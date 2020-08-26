@@ -7,39 +7,39 @@
 ** Reading
 Time taken: 5 hours 36 minutes
 | Section 1.1 | 1 hour |
-| Section 1.2 | 0 hours 56 minutes |
-| Section 1.2 - 15 | 0 hours 30 minutes |
-| Section 1.3 | 0 hours 48 minutes |
-| Section 2.1 | 0 hours 25 minutes |
-| Section 2.1.4 | 0 hours 30 minutes |
-| Section 2.2.1 | 0 hours 30 minutes |
-| Section 2.2.2 | 0 hours 39 minutes |
-| Section 2.3 | 0 hours 18 minutes |
+| Section 1.2 |  56 minutes |
+| Section 1.2 - 15 |  30 minutes |
+| Section 1.3 |  48 minutes |
+| Section 2.1 |  25 minutes |
+| Section 2.1.4 |  30 minutes |
+| Section 2.2.1 |  30 minutes |
+| Section 2.2.2 |  39 minutes |
+| Section 2.3 |  18 minutes |
 ** Exercises
 Time taken: 15 hours 54 minutes
-| Exercise 1.1.1 | 0 hours |
-| Exercise 1.2.1 | 0 hours 15 minutes |
-| Exercise 1.2.2 | 0 hours 14 minutes |
-| Exercise 1.2.3 | 0 hours 5 minutes |
-| Exercise 1.3.1 | 0 hours 30 minutes |
-| Exercise 1.3.2 - 1.3.3 | 0 hours 5 minutes |
-| Exercise 1.3.4 - 1.3.6 | 0 hours 7 minutes |
-| Exercise 1.3.7 | 0 hours 11 minutes |
-| Exercise 2.1.1 | 0 hours 1 minute |
-| Exercise 2.1.2 | 0 hours 53 minutes |
-| Exercise 2.1.3 | 0 hours 30 minutes |
-| Exercise 2.2.1 | 0 hours 30 minutes |
-| Exercise 2.2.2 | 0 hours 11 minutes |
-| Exercise 2.2.3 - Exercise 2.2.4 | 0 hours 10 minutes |
-| Exercise 2.2.6 | 0 hours 30 minutes |
+| Exercise 1.1.1 | 0 minutes |
+| Exercise 1.2.1 |  15 minutes |
+| Exercise 1.2.2 |  14 minutes |
+| Exercise 1.2.3 |  5 minutes |
+| Exercise 1.3.1 |  30 minutes |
+| Exercise 1.3.2 - 1.3.3 |  5 minutes |
+| Exercise 1.3.4 - 1.3.6 |  7 minutes |
+| Exercise 1.3.7 |  11 minutes |
+| Exercise 2.1.1 |  1 minute |
+| Exercise 2.1.2 |  53 minutes |
+| Exercise 2.1.3 |  30 minutes |
+| Exercise 2.2.1 |  30 minutes |
+| Exercise 2.2.2 |  11 minutes |
+| Exercise 2.2.3 - Exercise 2.2.4 |  10 minutes |
+| Exercise 2.2.6 |  30 minutes |
 | Exercise 2.2.7 | 1 hour 20 minutes |
-| Exercise 2.2.8 | 0 hours 31 minutes |
-| Exercise 2.2.9 - 1 | 0 hours 39 minutes |
+| Exercise 2.2.8 |  31 minutes |
+| Exercise 2.2.9 - 1 |  39 minutes |
 | Exercise 2.2.9 - 2 | 7 hours 14 minutes |
-| Exercise 2.2.9 - 3 | 0 hours 16 minutes |
+| Exercise 2.2.9 - 3 |  16 minutes |
 | Exercise 2.2.9 - 4 | 1 hour |
-| Exercise 2.2.9 - 5 | 0 hours 30 minutes |
-| Exercise 2.2.9 - 5,6 | 0 hours 12 minutes |
+| Exercise 2.2.9 - 5 |  30 minutes |
+| Exercise 2.2.9 - 5,6 |  12 minutes |
 ** Log
 ** Total Time: 27 hours 30 minutes
 | *Overview*             | *1 hour* |
@@ -120,29 +120,29 @@ Time taken: 15 hours 54 minutes
 | Adding Weekly Breakdown | 30 minutes          |
 | Adding Weekly Breakdown | 30 minutes          |
 ** Weekly Breakdown
-| *Week 1* | *0 hours 30 minutes* |
-| Monday, July 27th, 2020 | 0 hours |
-| Tuesday, July 28th, 2020 | 0 hours |
-| Wednesday, July 29th, 2020 | 0 hours |
-| Thursday, July 30th, 2020 | 0 hours 30 minutes |
-| Friday, July 31st, 2020 | 0 hours |
-| Saturday, August 1st, 2020 | 0 hours |
-| Sunday, August 2nd, 2020 | 0 hours |
+| *Week 1* | * 30 minutes* |
+| Monday, July 27th, 2020 | 0 minutes |
+| Tuesday, July 28th, 2020 | 0 minutes |
+| Wednesday, July 29th, 2020 | 0 minutes |
+| Thursday, July 30th, 2020 |  30 minutes |
+| Friday, July 31st, 2020 | 0 minutes |
+| Saturday, August 1st, 2020 | 0 minutes |
+| Sunday, August 2nd, 2020 | 0 minutes |
 | *Week 2* | *1 hour* |
-| Monday, August 3rd, 2020 | 0 hours |
-| Tuesday, August 4th, 2020 | 0 hours |
-| Wednesday, August 5th, 2020 | 0 hours |
+| Monday, August 3rd, 2020 | 0 minutes |
+| Tuesday, August 4th, 2020 | 0 minutes |
+| Wednesday, August 5th, 2020 | 0 minutes |
 | Thursday, August 6th, 2020 | 1 hour |
-| Friday, August 7th, 2020 | 0 hours |
-| Saturday, August 8th, 2020 | 0 hours |
-| Sunday, August 9th, 2020 | 0 hours |
+| Friday, August 7th, 2020 | 0 minutes |
+| Saturday, August 8th, 2020 | 0 minutes |
+| Sunday, August 9th, 2020 | 0 minutes |
 | *Week 3* | *4 hours* |
-| Monday, August 10th, 2020 | 0 hours |
-| Tuesday, August 11th, 2020 | 0 hours |
-| Wednesday, August 12th, 2020 | 0 hours |
-| Thursday, August 13th, 2020 | 0 hours |
-| Friday, August 14th, 2020 | 0 hours |
-| Saturday, August 15th, 2020 | 0 hours 30 minutes |
+| Monday, August 10th, 2020 | 0 minutes |
+| Tuesday, August 11th, 2020 | 0 minutes |
+| Wednesday, August 12th, 2020 | 0 minutes |
+| Thursday, August 13th, 2020 | 0 minutes |
+| Friday, August 14th, 2020 | 0 minutes |
+| Saturday, August 15th, 2020 |  30 minutes |
 | Sunday, August 16th, 2020 | 3 hours 30 minutes |
 | *Week 4* | *13 hours 30 minutes* |
 | Monday, August 17th, 2020 | 1 hour 30 minutes |
