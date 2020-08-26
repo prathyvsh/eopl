@@ -12,10 +12,12 @@
 
 (define (in-hours-and-minutes minutes)
   (let ((h (quotient minutes 60))
-        (m (remainder minutes 60)))
-        (if (and (eq? h 0) (eq? m 0)) "0 minutes"
-        (~a (if (eq? h 0) "" (~a h (if (eq? h 1) " hour" " hours")))
-        (if (eq? m 0) "" (~a " " m (if (eq? m 1) " minute" " minutes")))))))
+        (m (remainder minutes 60)))     
+        (string-join
+         (list
+          (if (and (eq? h 0) (eq? m 0)) "0 minutes"
+              (if (eq? h 0) "" (~a h (if (eq? h 1) " hour" " hours")))
+               (if (eq? m 0) "" (~a m (if (eq? m 1) " minute" " minutes")))) " "))))
 
 (define (span start end)
   (let ((timespan (- (date->seconds end) (date->seconds start))))

@@ -6,7 +6,7 @@
 ** Time taken
 ** Reading
 Time taken: 5 hours 49 minutes
-| Section 1.1 | 1 hour |
+| Section 1.1 | 1 hour  |
 | Section 1.2 |  56 minutes |
 | Section 1.2 - 15 |  30 minutes |
 | Section 1.3 |  48 minutes |
@@ -37,13 +37,13 @@ Time taken: 16 hours 11 minutes
 | Exercise 2.2.9 - 1 |  39 minutes |
 | Exercise 2.2.9 - 2 | 7 hours 14 minutes |
 | Exercise 2.2.9 - 3 |  16 minutes |
-| Exercise 2.2.9 - 4 | 1 hour |
+| Exercise 2.2.9 - 4 | 1 hour  |
 | Exercise 2.2.9 - 5 |  30 minutes |
 | Exercise 2.2.9 - 5,6 |  12 minutes |
 | Exercise 2.3.1 |  17 minutes |
 ** Log
-** Total Time: 28 hours
-| *Overview*             | *1 hour* |
+** Total Time: 28 hours 
+| *Overview*             | *1 hour * |
 | Overview               | 30 minutes          |
 | Overview               | 30 minutes          |
 | *Section 1*            | *4 hours 41 minutes* |
@@ -111,7 +111,7 @@ Time taken: 16 hours 11 minutes
 | Section 2.3            | 18 minutes          |
 | Section 2.3            | 13 minutes          |
 | Exercise 2.3.1         | 17 minutes          |
-| *Extras*               | *5 hours* |
+| *Extras*               | *5 hours * |
 | Reading List           | 30 minutes          |
 | Reading List           | 30 minutes          |
 | Building Timetable Generator | 30 minutes          |
@@ -131,15 +131,15 @@ Time taken: 16 hours 11 minutes
 | Friday, July 31st, 2020 | 0 minutes |
 | Saturday, August 1st, 2020 | 0 minutes |
 | Sunday, August 2nd, 2020 | 0 minutes |
-| *Week 2* | *1 hour* |
+| *Week 2* | *1 hour * |
 | Monday, August 3rd, 2020 | 0 minutes |
 | Tuesday, August 4th, 2020 | 0 minutes |
 | Wednesday, August 5th, 2020 | 0 minutes |
-| Thursday, August 6th, 2020 | 1 hour |
+| Thursday, August 6th, 2020 | 1 hour  |
 | Friday, August 7th, 2020 | 0 minutes |
 | Saturday, August 8th, 2020 | 0 minutes |
 | Sunday, August 9th, 2020 | 0 minutes |
-| *Week 3* | *4 hours* |
+| *Week 3* | *4 hours * |
 | Monday, August 10th, 2020 | 0 minutes |
 | Tuesday, August 11th, 2020 | 0 minutes |
 | Wednesday, August 12th, 2020 | 0 minutes |
@@ -149,13 +149,13 @@ Time taken: 16 hours 11 minutes
 | Sunday, August 16th, 2020 | 3 hours 30 minutes |
 | *Week 4* | *13 hours 30 minutes* |
 | Monday, August 17th, 2020 | 1 hour 30 minutes |
-| Tuesday, August 18th, 2020 | 1 hour |
-| Wednesday, August 19th, 2020 | 3 hours |
+| Tuesday, August 18th, 2020 | 1 hour  |
+| Wednesday, August 19th, 2020 | 3 hours  |
 | Thursday, August 20th, 2020 | 1 hour 30 minutes |
-| Friday, August 21st, 2020 | 2 hours |
+| Friday, August 21st, 2020 | 2 hours  |
 | Saturday, August 22nd, 2020 | 2 hours 30 minutes |
-| Sunday, August 23rd, 2020 | 2 hours |
-| *Week 5* | *9 hours* |
-| Monday, August 24th, 2020 | 3 hours |
+| Sunday, August 23rd, 2020 | 2 hours  |
+| *Week 5* | *9 hours * |
+| Monday, August 24th, 2020 | 3 hours  |
 | Tuesday, August 25th, 2020 | 4 hours 30 minutes |
 | Wednesday, August 26th, 2020 | 1 hour 30 minutes |
