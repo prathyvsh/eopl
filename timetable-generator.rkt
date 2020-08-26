@@ -2,6 +2,7 @@
 
 (require racket/date)
 (require racket/format)
+(require racket/dict)
 
 (define (stamp hour min day month year)
   (date* 00 min hour day month year 0 0 0 19800 0 "IST"))
@@ -118,8 +119,8 @@
           (list "Exercise 2.2.9 - 4" (stamp 22 08 25 8 2020) (stamp 22 38 25 8 2020))
           (list "Exercise 2.2.9 - 4" (stamp 23 08 25 8 2020) (stamp 23 38 25 8 2020))
           (list "Exercise 2.2.9 - 5" (stamp 3 14 26 8 2020) (stamp 3 44 26 8 2020))
-          (list "Exercise 2.2.9 - 5,6" (stamp 20 10 26 8 2020) (stamp 20 22 26 8 2020))
-          (list "Section 2.3" (stamp 20 40 26 8 2020) (stamp 20 22 26 8 2020))
+          (list "Exercise 2.2.9 - 5,6" (stamp 20 09 26 8 2020) (stamp 20 21 26 8 2020))
+          (list "Section 2.3" (stamp 20 21 26 8 2020) (stamp 20 34 26 8 2020))
    ))
    
    (list "Extras"
@@ -188,7 +189,40 @@
                "*" (in-hours-and-minutes (foldl + 0 (map second ranges))) "* |\n"
                (string-join (map format-week-entry-row ranges) "\n"))) week-partition (range 1 (+ 1 (length week-partition)))) "\n"))
 
-              
+(define (upsert dict key valfn)
+(if (equal? (dict-ref dict key (lambda () #f)) #f)
+        (dict-set dict key (valfn 0))
+        (dict-update dict key valfn)))
+
+(define (build-date-dict next acc)
+    (upsert acc (car next) (lambda (n) (+ n (apply span (take (cdr next) 2))))))
+
+
+
+(define (breakdown-by-time l)
+(string-join (map (lambda (n) (~a "| " (first n) " | " (second n) " |"))
+                  (sort
+                   (dict-map l (lambda (k v) (list k (in-hours-and-minutes (in-minutes v)))))
+      (lambda (a b) (string<? (car a) (car b))))) "\n"))
+
+
+(define sections (filter (lambda (n) (equal? (substring (first n) 0 (string-length "Section")) "Section")) logged-dates))
+(define exercises (filter (lambda (n) (equal? (substring (first n) 0 (string-length "Exercise")) "Exercise")) logged-dates))
+(define extras (filter (lambda (n) (not (or (equal? (substring (first n) 0 (string-length "Section")) "Section")
+                                               (equal? (substring (first n) 0 (string-length "Exercise")) "Exercise")))) logged-dates))
+
+
+(define (time-breakdown-table title lst)
+  (let ((result (foldl build-date-dict #hash() lst)))
+    (~a (string-join
+         (list (~a "** " title)
+        (~a "Time taken: "
+        (in-hours-and-minutes (in-minutes (foldl + 0 (dict-map result (lambda (k v) v))))))
+        (breakdown-by-time result)) "\n"))))
+
+(define section-times (time-breakdown-table "Reading" sections))
+(define exercise-times (time-breakdown-table "Exercises" exercises))
+(define extra-times (time-breakdown-table "Extras" extras))
 
 ;; TODO:
 ;; Breakdown of reading speed by every 100 pages:
@@ -205,6 +239,10 @@
                                                           (~a "*Latest Work Date*: " (date->string last-date))
                                                           (~a "*Elapsed Time*: "
                                                               elapsed-days " days")
+                                                          "** Time taken"
+                                                          section-times
+                                                          exercise-times
+                                                          "** Log"
                                                    (build-table dates)
                                                    "** Weekly Breakdown"
                                                    weekly-breakdown) "\n"))) #:exists 'replace)
