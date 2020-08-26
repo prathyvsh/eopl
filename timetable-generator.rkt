@@ -126,10 +126,11 @@
           (list "Exercise 2.2.9 - 4" (stamp 22 08 25 8 2020) (stamp 22 38 25 8 2020))
           (list "Exercise 2.2.9 - 4" (stamp 23 08 25 8 2020) (stamp 23 38 25 8 2020))
           (list "Exercise 2.2.9 - 5" (stamp 3 14 26 8 2020) (stamp 3 44 26 8 2020))
-          (list "Exercise 2.2.9 - 5,6" (stamp 20 09 26 8 2020) (stamp 20 21 26 8 2020))
-          (list "Section 2.3" (stamp 20 21 26 8 2020) (stamp 20 39 26 8 2020) 56)
+          (list "Exercise 2.2.9 - 5,6" (stamp 22 09 26 8 2020) (stamp 22 21 26 8 2020))
+          (list "Section 2.3" (stamp 22 21 26 8 2020) (stamp 22 39 26 8 2020) 56)
           (list "Section 2.3" (stamp 00 58 26 8 2020) (stamp 1 11 26 8 2020) 58)
           (list "Exercise 2.3.1" (stamp 1 11 26 8 2020) (stamp 1 28 26 8 2020))
+          (list "Exercise 2.3.1" (stamp 3 25 27 8 2020) (stamp 3 25 27 8 2020))
    ))
    
    (list "Extras"
@@ -143,6 +144,8 @@
          (list "Adding Weekly Breakdown" (stamp 22 28 22 8 2020) (stamp 22 58 22 8 2020))
          (list "Adding Weekly Breakdown" (stamp 23 06 22 8 2020) (stamp 23 36 22 8 2020))
          (list "Adding Weekly Breakdown" (stamp 00 00 23 8 2020) (stamp 00 30 23 8 2020))
+         (list "Adding Breakdown by Each Topic" (stamp 22 46 26 8 2020) (stamp 23 16 26 8 2020))
+         (list "Adding Breakdown by Each Topic" (stamp 23 17 26 8 2020) (stamp 23 47 26 8 2020))
    ))))
 
 (define start-date (stamp 00 00 30 7 2020))
