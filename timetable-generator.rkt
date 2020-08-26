@@ -14,10 +14,9 @@
   (let ((h (quotient minutes 60))
         (m (remainder minutes 60)))     
         (string-join
-         (list
-          (if (and (eq? h 0) (eq? m 0)) "0 minutes"
-              (if (eq? h 0) "" (~a h (if (eq? h 1) " hour" " hours")))
-               (if (eq? m 0) "" (~a m (if (eq? m 1) " minute" " minutes")))) " "))))
+          (if (and (eq? h 0) (eq? m 0)) '("0 minutes")
+              (list (if (eq? h 0) "" (~a h (if (eq? h 1) " hour" " hours")))
+               (if (eq? m 0) "" (~a m (if (eq? m 1) " minute" " minutes"))))) " ")))
 
 (define (span start end)
   (let ((timespan (- (date->seconds end) (date->seconds start))))
@@ -64,7 +63,7 @@
           (list "Section 1.1" (stamp 21 30 30 7 2020) (stamp 22 00 30 7 2020))
           (list "Exercise 1.1.1" (stamp 22 20 15 8 2020) (stamp 22 20 15 8 2020))
           (list "Section 1.1" (stamp 23 00 15 8 2020) (stamp 23 30 15 8 2020) 8)
-          (list "Section 1.2 - 15" (stamp 1 00 16 8 2020) (stamp 1 30 16 8 2020) 15)
+          (list "Section 1.2" (stamp 1 00 16 8 2020) (stamp 1 30 16 8 2020) 15)
           (list "Exercise 1.2.1" (stamp 3 01 16 8 2020) (stamp 3 16 16 8 2020))
           (list "Section 1.2" (stamp 3 16 16 8 2020) (stamp 3 31 16 8 2020) 18)
           (list "Exercise 1.2.2" (stamp 4 40 16 8 2020) (stamp 4 54 16 8 2020))
