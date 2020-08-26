@@ -10,13 +10,18 @@
 (define (in-minutes seconds)
   (/ seconds 60))
 
+(define (format-time h m)
+  (if (and (eq? h 0) (eq? m 0)) "0 minutes"
+      (let ((hours (~a h " " (if (eq? h 1) "hour" "hours")))
+            (minutes (~a m " " (if (eq? m 1) "minute" "minutes"))))
+        (if (eq? h 0) minutes
+            (if (eq? m 0) hours
+                (string-join (list hours minutes) " "))))))
+
 (define (in-hours-and-minutes minutes)
   (let ((h (quotient minutes 60))
         (m (remainder minutes 60)))     
-        (string-join
-          (if (and (eq? h 0) (eq? m 0)) '("0 minutes")
-              (list (if (eq? h 0) "" (~a h (if (eq? h 1) " hour" " hours")))
-               (if (eq? m 0) "" (~a m (if (eq? m 1) " minute" " minutes"))))) " ")))
+          (format-time h m)))
 
 (define (span start end)
   (let ((timespan (- (date->seconds end) (date->seconds start))))
