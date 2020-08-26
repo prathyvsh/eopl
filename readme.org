@@ -30,6 +30,13 @@ which returns true mentioned as a one liner to demonstrate how apply works itera
 Chapter 2 is heavy on exercises and is a really good one to probably get a sense of demands put on your programming skills in the subsequent chapters.
 These exercises particularly from 2.2.7-2.2.9 are interesting and gives a good overview of the techniques you need under your belt to go ahead (Verify this).
 
+One thing I am noticing as I go through this text is that ideas like Lambda Calculus is introduced without showing the motivation. It is laid down as a given
+and the student is asked to write algorithms to find the bound and free variables. While I have researched into why Lambda Calculus matters and can see how
+free and bound variable segregation could be of help in subsequent programs in writing an interpreter, the book on its own doesn't supply these details and I think
+might need further context building to ground why it is a significant theory for programming language engineering.
+
+May be I can supplement it by reading papers like from Landin here?
+
 *Chapter 3*
 - Data abstraction and examples of representational transformations.
 - Syntactic abstractions such as variant record facility.
