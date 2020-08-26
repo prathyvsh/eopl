@@ -64,7 +64,7 @@ Such constraints are said to be enforced with the help of formal methods. Since 
 
 Think this is a good point at which to refer how ambiguity can arise in a context free setting.
 
-* Structural Recursion *
+*Structural Recursion*
 When defining a program based on structural induction, the structure of the program should be patterned after the structure of the data.
 
 * Exercise
@@ -74,7 +74,7 @@ structures which would be used in building up an interpreter later in the book.
 The 2nd part in Exercise 2.2.9 is a bit challenging and made me think about the differences in order of construction
 in structural recursion vs. tail recursion.
 
-* Associativitiy of composition
+*Associativitiy of composition*
 
 In the previous examples there was a problem of having wrong nesting when trying to build up the path trace in a list.
 This meant that a structural recursion would yield (((() c) b) a) instead of (c (b (a ()))). This meant that the path
@@ -85,5 +85,10 @@ series of compositions. This means that when the operation is associative, the b
 which is indeed a trivial observation, but the distinction here is, even nesting doesn't make a difference.
 That is (composition ident c b a) can be represented as both (((ident c) b) a) and (ident (c (b a)))
 
-I realized that 
+** Static vs. Dynamic properties
 
+In Scheme, the relation between a variable reference and the formal parameter to which it refers is a static property.
+
+The distinction between bound and free variables. Free variables through an error if they are not bound somewhere in the course of evaluation.
+The last point of giving a bound is from the environment/system in which the expression is evaluated, such bindings are called global bindings.
+And the ones that are bound by a formal parameter of an enclosing lambda expression is called lexically bound.

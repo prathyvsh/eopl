@@ -27,6 +27,9 @@ which returns true mentioned as a one liner to demonstrate how apply works itera
 - Connection between inductive data specification and recursive programming.
 - Notions related to scope of variables is introduced in this chapter
 
+Chapter 2 is heavy on exercises and is a really good one to probably get a sense of demands put on your programming skills in the subsequent chapters.
+These exercises particularly from 2.2.7-2.2.9 are interesting and gives a good overview of the techniques you need under your belt to go ahead (Verify this).
+
 *Chapter 3*
 - Data abstraction and examples of representational transformations.
 - Syntactic abstractions such as variant record facility.

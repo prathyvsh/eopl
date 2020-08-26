@@ -103,7 +103,6 @@
 (eval-test car&cdr-try1 'a '(b c d () e (a)))
 (eval-test car&cdr-try1 'a '(() () a))
 
-
 ;; This definition works by using the reverse-nest function but I think it is much better
 ;; to use tail recursion here as it naturally models it as (c (b (a))) instead of
 ;; (a (b (c))) which is the model of traversal for normal recursion in Racket.
@@ -137,33 +136,9 @@
 (eval-test car&cdr-tr 'a '(b c d () e (a)))
 (eval-test car&cdr-tr 'a '(() () a))
 
-
-(time (car&cdr 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
-(time (car&cdr-try1 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
-(time (car&cdr-tr 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
-
-;; s-exp: symbol | s-list
-;; s-list: ({<s-exp>}*)
-;; There is a reversal of operations happening when seeking
-;; for the match
-(define (visit-pattern s slst errvalue)
-  (if (null? slst) errvalue
-      (if (symbol? slst)
-          (if (eq? s slst) '() errvalue)
-          (if (eq? (visit-pattern s (car slst) errvalue) errvalue)
-              (if (eq? (visit-pattern s (cdr slst) errvalue) errvalue)
-                  errvalue
-                  (cons 'cdr (visit-pattern s (cdr slst) errvalue)))
-                  (cons 'car (visit-pattern s (car slst) errvalue))))))
-
-(define (reverse l)
-  (if (null? l) '()
-      (append (reverse (cdr l)) (list (car l)))))
-
-(define (nest l)
-  (if (null? l) '()
-      (if (null? (cdr l)) (car l)
-      (list (car l) (nest (cdr l))))))
+; (time (car&cdr 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
+; (time (car&cdr-try1 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
+; (time (car&cdr-tr 'a '(b c d e f g (h i j k l (m n o p q r s (t u (v w) (x y))) (z a))) 'fail))
 
 (define (build-composition p)
   (if (null? (cdr p)) (car p)
@@ -196,31 +171,34 @@
 (equal? ((compose car cdr cdr) '(a b c d)) 'c)
 (equal? ((compose double add1 makezero) 1) 2)
 
-(define (sort-fn a b) (if (< a b) (list a b) (list b a)))
+(define (lt a b) (< a b))
 
-(define (sort-once lon)
-  (if (null? lon) '()
-      (if (null? (cdr lon)) (list (car lon))
-          (if (null? (cddr lon)) (sort-fn (car lon) (cadr lon))
-              (append (sort-fn (car lon) (cadr lon))
-                      (sort-once (cddr lon)))))))
-
-(define (sorted-list result lon)
-  (if (> (length result) 2)
-      (append (list (car result))
-              (sort (cons (cadr result) (cddr lon))))
-      (append (list (car result))
-              (sort (cdr lon)))))
+(define (insert pred el lst)
+  (if (null? lst) (list el)
+      (if (pred el (car lst))
+          (cons el (cons (car lst) (cdr lst)))
+          (cons (car lst) (insert pred el (cdr lst))))))
 
 (define (sort lon)
   (if (null? lon) '()
-     (sorted-list (sort-once lon) lon)))
+     (insert lt (car lon) (sort (rest lon)))))
 
-(sort '())
-(sort '(1))
-(sort '(1 2))
-(sort '(2 1))
-(sort '(1 3 2))
-(sort '(2 1 3))
-(sort '(3 1 2))
-(sort '(3 2 1))
+(equal? (sort '()) '())
+(equal? (sort '(1)) '(1))
+(equal? (sort '(1 2)) '(1 2))
+(equal? (sort '(2 1)) '(1 2))
+(equal? (sort '(1 3 2)) '(1 2 3))
+(equal? (sort '(2 1 3)) '(1 2 3))
+(equal? (sort '(3 1 2)) '(1 2 3))
+(equal? (sort '(3 2 1)) '(1 2 3))
+(equal? (sort '(8 2 5 2 3)) '(2 2 3 5 8))
+
+(define (sort-predicate pred lon)
+  (if (null? lon) '()
+      (insert pred (car lon) (sort-predicate pred (rest lon)))))
+
+(equal? (sort-predicate < '(8 2 5 2 3)) '(2 2 3 5 8))
+(equal? (sort-predicate > '(8 2 5 2 3)) '(8 5 3 2 2))
+(equal? (sort-predicate > '()) '())
+(equal? (sort-predicate > '(3 2 1)) '(3 2 1))
+(equal? (sort-predicate < '(1 1)) '(1 1))
