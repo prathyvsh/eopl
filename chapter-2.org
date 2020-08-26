@@ -92,3 +92,8 @@ In Scheme, the relation between a variable reference and the formal parameter to
 The distinction between bound and free variables. Free variables through an error if they are not bound somewhere in the course of evaluation.
 The last point of giving a bound is from the environment/system in which the expression is evaluated, such bindings are called global bindings.
 And the ones that are bound by a formal parameter of an enclosing lambda expression is called lexically bound.
+
+Since the lexical binding of a variable done once cannot be overwritten (verify), then the value of a bound variable is always constant,
+when evaluating the code.
+
+Lambda expressions without free variables are called combinators.
