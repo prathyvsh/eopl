@@ -15,7 +15,7 @@ Time taken: 5 hours 49 minutes
 | Section 2.2.2 | 39 minutes |
 | Section 2.3 | 31 minutes |
 ** Exercises
-Time taken: 16 hours 11 minutes
+Time taken: 16 hours 41 minutes
 | Exercise 1.1.1 | 0 minutes |
 | Exercise 1.2.1 | 15 minutes |
 | Exercise 1.2.2 | 14 minutes |
@@ -40,8 +40,9 @@ Time taken: 16 hours 11 minutes
 | Exercise 2.2.9 - 5 | 30 minutes |
 | Exercise 2.2.9 - 5,6 | 12 minutes |
 | Exercise 2.3.1 | 17 minutes |
+| Exercises 2.3.1 | 30 minutes |
 ** Log
-** Total Time: 29 hours
+** Total Time: 29 hours 30 minutes
 | *Overview*             | *1 hour* |
 | Overview               | 30 minutes          |
 | Overview               | 30 minutes          |
@@ -62,7 +63,7 @@ Time taken: 16 hours 11 minutes
 | Exercise 1.3.4 - 1.3.6 | 7 minutes           |
 | Section 1.3            | 23 minutes          |
 | Exercise 1.3.7         | 11 minutes          |
-| *Section 2*            | *17 hours 19 minutes* |
+| *Section 2*            | *17 hours 49 minutes* |
 | Section 2.1            | 19 minutes          |
 | Section 2.1            | 5 minutes           |
 | Exercise 2.1.1         | 1 minutes           |
@@ -111,6 +112,7 @@ Time taken: 16 hours 11 minutes
 | Section 2.3            | 13 minutes          |
 | Exercise 2.3.1         | 17 minutes          |
 | Exercise 2.3.1         | 0 minutes           |
+| Exercises 2.3.1        | 30 minutes          |
 | *Extras*               | *6 hours* |
 | Reading List           | 30 minutes          |
 | Reading List           | 30 minutes          |
@@ -157,8 +159,8 @@ Time taken: 16 hours 11 minutes
 | Friday, August 21st, 2020 | 2 hours |
 | Saturday, August 22nd, 2020 | 2 hours 30 minutes |
 | Sunday, August 23rd, 2020 | 2 hours |
-| *Week 5* | *10 hours* |
+| *Week 5* | *10 hours 30 minutes* |
 | Monday, August 24th, 2020 | 3 hours |
 | Tuesday, August 25th, 2020 | 4 hours 30 minutes |
 | Wednesday, August 26th, 2020 | 2 hours 30 minutes |
-| Thursday, August 27th, 2020 | 0 minutes |
+| Thursday, August 27th, 2020 | 30 minutes |
