@@ -131,7 +131,14 @@
           (list "Section 2.3" (stamp 00 58 26 8 2020) (stamp 1 11 26 8 2020) 58)
           (list "Exercise 2.3.1" (stamp 1 11 26 8 2020) (stamp 1 28 26 8 2020))
           (list "Exercise 2.3.1" (stamp 3 25 27 8 2020) (stamp 3 25 27 8 2020))
-          (list "Exercises 2.3.1" (stamp 5 58 27 8 2020) (stamp 6 28 27 8 2020))
+          (list "Exercise 2.3.1" (stamp 5 58 27 8 2020) (stamp 6 28 27 8 2020))
+          (list "Exercise 2.3.1" (stamp 22 04 27 8 2020) (stamp 22 34 27 8 2020))
+          (list "Exercise 2.3.2" (stamp 22 34 27 8 2020) (stamp 23 04 27 8 2020))
+          (list "Exercise 2.3.3" (stamp 23 36 27 8 2020) (stamp 23 40 27 8 2020))
+          (list "Exercise 2.3.4" (stamp 23 40 27 8 2020) (stamp 23 41 27 8 2020))
+          (list "Exercise 2.3.5" (stamp 23 41 27 8 2020) (stamp 00 06 28 8 2020))
+          (list "Exercise 2.3.6" (stamp 00 47 28 8 2020) (stamp 01 11 28 8 2020))
+          (list "Exercise 2.3.7" (stamp 01 11 28 8 2020) (stamp 01 17 28 8 2020))
    ))
    
    (list "Extras"

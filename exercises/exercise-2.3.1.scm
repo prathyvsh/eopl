@@ -32,6 +32,12 @@
 ;; Here, the outer x is free while the inner x is bound.
 ;; Consider this carefully. I think this is where alpha renaming becomes significant.
 
+;; Attempt 1
+(define (contains? sym l)
+  (if (null? l) false
+      (if (equal? sym (car l)) #t
+          (contains? sym (cdr l)))))
+
 (define (cons-without-duplicates s l)
   (if (contains? s l) l (cons s l)))
 
@@ -39,16 +45,14 @@
   (if (null? l1) l2
       (merge-without-duplicates (cdr l1) (cons-without-duplicates (car l1) l2))))
 
-(define (get-binding lambda-exp)
-  (if (null? (cadr lambda-exp)) '() (caadr lambda-exp)))
+(define (get-binding lambda-exp) (if (null? (cadr lambda-exp)) '() (caadr lambda-exp)))
 
-(define (get-exp lambda-exp)
-  (caddr lambda-exp))
+(define (get-exp lambda-exp) (caddr lambda-exp))
 
-(define (contains? sym los)
-  (if (null? los) false
-      (if (equal? (car los) sym) true
-          (contains? sym (cdr los)))))
+(define (retain sym los)
+  (if (null? los) '()
+      (if (equal? (car los) sym) (cons (car los) (retain sym (cdr los)))
+          (retain sym (cdr los)))))
 
 (define (remove sym los)
   (if (null? los) '()
@@ -57,22 +61,31 @@
 
 (define (remove-bound-variable var fvs) (remove var fvs))
 
-(define (get-bound-variable var fvs) (contains? var fvs))
-
 ;; Free variables in the lambda expression are the ones that are
 ;; remaining after the bound ones are removed.
 (define (free-vars-in-lambda-exp lexp)
   (remove-bound-variable (get-binding lexp) (free-vars (get-exp lexp))))
 
+(define (bound-vars-in-lambda-exp lexp)
+  (merge-without-duplicates (retain (get-binding lexp) (free-vars (get-exp lexp)))
+        (bound-vars (get-exp lexp))))
+
 (define (free-vars-in-application exp)
   (merge-without-duplicates (free-vars (car exp)) (free-vars (cadr exp))))
+
+(define (bound-vars-in-application exp)
+  (merge-without-duplicates (bound-vars (car exp)) (bound-vars (cadr exp))))
 
 ;; exp : <varref> | (lambda (<var>) <exp>) | (<exp> <exp>)
 (define (free-vars exp)
   (if (symbol? exp) (list exp)
-      (if (eq? (first exp) 'lambda) (free-vars-in-lambda-exp exp)
+      (if (eq? (car exp) 'lambda) (free-vars-in-lambda-exp exp)
           (free-vars-in-application exp))))
 
+(define (bound-vars exp)
+  (if (symbol? exp) '()
+      (if (eq? (car exp) 'lambda) (bound-vars-in-lambda-exp exp)
+          (bound-vars-in-application exp))))
 
 (define (set-equal? x y)
   (if (equal? (length x) (length y))
@@ -91,5 +104,72 @@
 (set-equal? (free-vars '(lambda (x) ((lambda (y) y) x))) '())
 (set-equal? (free-vars '(lambda (x1) ((lambda (y1) y) x))) '(y x))
 (set-equal? (free-vars '(lambda (x) (lambda (y) (lambda (z) (x y z))))) '())
-(set-equal? (free-vars '(lambda (x) (lambda (y) ((lambda (z) (p q)) r)))) '(q p r))
+(set-equal? (free-vars '(lambda (x) (lambda (y) ((lambda (z) (p q)) r)))) '(p q r))
 (set-equal? (free-vars '(lambda () (lambda () x))) '(x))
+(set-equal? (free-vars '(lambda (x) ((lambda (y) ((lambda (z) p) q)) r))) '(p q r))
+(set-equal? (free-vars '(x (y (x z)))) '(x y z))
+
+(set-equal? (bound-vars 'a) '())
+(set-equal? (bound-vars '(lambda (a) a)) '(a))
+(set-equal? (bound-vars '(a b)) '())
+(set-equal? (bound-vars '(lambda (a) (a b))) '(a))
+(set-equal? (bound-vars '(lambda () (x y))) '())
+(set-equal? (bound-vars '(lambda (a) ((lambda (b) b) a))) '(a b))
+(set-equal? (bound-vars '(x (y (x z)))) '())
+(set-equal? (bound-vars '(lambda (x y) (lambda (z) (((lambda (y) y) y) ((lambda (z) x) (lambda (w) w)))))) '(x y w))
+
+;; Attempt 2
+;; exp : <varref> | (lambda (<var>) <exp>) | (<exp> <exp>)
+
+;; An idea I just got is that you are doing a structural recursion on the same
+;; set of expressions inorder to find if a variable is bound/free. This means
+;; that both the expressions can have the same algorithmic trace.
+
+(define (merge fb1 fb2)
+  (list (merge-without-duplicates (car fb1) (car fb2))
+        (merge-without-duplicates (cadr fb1) (cadr fb2))))
+
+(define (add-binding binding result)
+  (if (contains? binding (cadr result))
+            (list (cons binding (car result))
+            (remove binding (cadr result)))
+            (list (car result) (cadr result))))
+
+(define (abstraction? exp) (eq? (car exp) 'lambda))
+
+;; Trace walks through the expression and finds the free and bound occurrences.
+;; Whenever it finds a binding that is present in the variables list, it is subtracted
+;; from the list and added to the list of bindings.
+;; Finally merge-without-duplicates is used to merge the variables occurring as exp1 and exp2
+;; in an application.
+(define (trace exp)
+  (if (symbol? exp) (list '() (list exp))
+      (if (abstraction? exp) (add-binding (get-binding exp) (trace (get-exp exp)))
+          (merge (trace (car exp)) (trace (cadr exp))))))
+
+(define (free-vars2 exp) (cadr (trace exp)))
+
+(define (bound-vars2 exp) (car (trace exp)))
+
+(set-equal? (free-vars2 'a) '(a))
+(set-equal? (free-vars2 '(lambda (a) a)) '())
+(set-equal? (free-vars2 '(lambda (a) (a b))) '(b))
+(set-equal? (free-vars2 '((lambda (a) a) b)) '(b))
+(set-equal? (free-vars2 '(lambda () (x y))) '(x y))
+(set-equal? (free-vars2 '(lambda (x) (lambda (y) (x y)))) '())
+(set-equal? (free-vars2 '(lambda (x) (lambda (y) p))) '(p))
+(set-equal? (free-vars2 '(lambda (x) ((lambda (y) y) x))) '())
+(set-equal? (free-vars2 '(lambda (x1) ((lambda (y1) y) x))) '(y x))
+(set-equal? (free-vars2 '(lambda (x) (lambda (y) (lambda (z) (x y z))))) '())
+(set-equal? (free-vars2 '(lambda (x) (lambda (y) ((lambda (z) (p q)) r)))) '(p q r))
+(set-equal? (free-vars2 '(lambda () (lambda () x))) '(x))
+(set-equal? (free-vars2 '(lambda (x) ((lambda (y) ((lambda (z) p) q)) r))) '(p q r))
+(set-equal? (free-vars2 '(x (y (x z)))) '(x y z))
+
+(set-equal? (bound-vars2 'a) '())
+(set-equal? (bound-vars2 '(lambda (a) a)) '(a))
+(set-equal? (bound-vars2 '(a b)) '())
+(set-equal? (bound-vars2 '(lambda (a) (a b))) '(a))
+(set-equal? (bound-vars2 '(lambda () (x y))) '())
+(set-equal? (bound-vars2 '(lambda (a) ((lambda (b) b) a))) '(a b))
+(set-equal? (bound-vars2 '(x (y (x z)))) '())
