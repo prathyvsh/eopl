@@ -134,6 +134,7 @@ Time taken: 19 hours 11 minutes
 | Exercise 2.3.9         | 10 minutes          |
 | Section 2.3.2          | 5 minutes           |
 | Exercise 2.3.10        | 15 minutes          |
+| Exercise 2.3.10        | 0 minutes           |
 | *Extras*               | *6 hours* |
 | Reading List           | 30 minutes          |
 | Reading List           | 30 minutes          |
