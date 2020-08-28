@@ -108,3 +108,7 @@ I think it could be due to variable shadowing that region and scope may not be t
 
 * Lexical/Statical scope *
 Languages in which the scope can be entirely determined at runtime.
+
+The idea that variables can be represented as (: d p), where d is lexical depth and p is the declaration position is introduced.
+While it is a neat idea, I think not enough motivation is provided as to why it is worthwhile. Some form of intuition on to why
+such a scheme is necessary would help illuminate and get an understanding of the framework that is being built with this work.
