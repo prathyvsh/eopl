@@ -139,6 +139,10 @@
           (list "Exercise 2.3.5" (stamp 23 41 27 8 2020) (stamp 00 06 28 8 2020))
           (list "Exercise 2.3.6" (stamp 00 47 28 8 2020) (stamp 01 11 28 8 2020))
           (list "Exercise 2.3.7" (stamp 01 11 28 8 2020) (stamp 01 17 28 8 2020))
+          (list "Section 2.3.2" (stamp 21 39 28 8 2020) (stamp 22 04 28 8 2020) 60)
+          (list "Exercise 2.3.8" (stamp 22 04 28 8 2020) (stamp 22 09 28 8 2020))
+          (list "Exercise 2.3.9" (stamp 22 09 28 8 2020) (stamp 22 19 28 8 2020))
+          (list "Section 2.3.2" (stamp 22 19 28 8 2020) (stamp 22 39 28 8 2020))
    ))
    
    (list "Extras"

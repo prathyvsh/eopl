@@ -97,3 +97,14 @@ Since the lexical binding of a variable done once cannot be overwritten (verify)
 when evaluating the code.
 
 Lambda expressions without free variables are called combinators.
+
+* Scope *
+The area in which a variable declaration is effective
+
+* Region *
+The area to which the variable declaration applies.
+
+I think it could be due to variable shadowing that region and scope may not be the same.
+
+* Lexical/Statical scope *
+Languages in which the scope can be entirely determined at runtime.
