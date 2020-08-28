@@ -145,6 +145,7 @@
           (list "Section 2.3.2" (stamp 22 19 28 8 2020) (stamp 22 24 28 8 2020) 62)
           (list "Exercise 2.3.10" (stamp 22 24 28 8 2020) (stamp 22 39 28 8 2020))
           (list "Exercise 2.3.10" (stamp 23 23 28 8 2020) (stamp 23 23 28 8 2020))
+          (list "Exercise 2.3.10" (stamp 23 55 28 8 2020) (stamp 00 25 29 8 2020))
    ))
    
    (list "Extras"
