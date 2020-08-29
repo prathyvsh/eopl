@@ -13,15 +13,15 @@ Next, the text moves on to give an idea of semantics of the programming language
 
 ** Overview
 
-First chapter goes on a quick tour of the Scheme language. If you have not had prior exposure to the language, a more thorough guide as recommended in the further reading section or HtDP is recommended before you dive into this one as the details provided on the language constructs are crisp and to the point. One has to be accustomed to the nuances and language intricacies of Scheme to get a firm grasp on the details being mentioned here.
+First chapter goes on a quick tour of the Scheme language. If you have not had prior exposure to the language, I recommend a more thorough guide such as HtDP before you dive into this one. The details provided in the first chapter on the language constructs are crisp and to the point. One has to be accustomed to the intricacies of Scheme to get a firm grasp on the nuances implicit in the examples being mentioned here.
 
-For example, ideas such as higher order functions are introduced within a page with map and andmap being briefly introduced as demonstrations without hints on how their construction is done. And there are doozies like:
+To give an idea of the expected depth in your language, ideas such as higher order functions are introduced within a page with map and andmap being briefly introduced with their demonstrations of working without any hints on how their construction is done. And there are doozies like:
 
 #+BEGIN_SRC scheme
 (apply apply (list procedure? (list apply)))
 #+END_SRC
 
-which returns true mentioned as a one liner to demonstrate how apply works iteratively.
+which returns true. This is mentioned as a one liner to demonstrate how apply works iteratively.
 
 *Chapter 2*
 - Connection between inductive data specification and recursive programming.
@@ -39,8 +39,9 @@ May be I can supplement it by reading papers like from Landin here?
 
 I don't know if this is by design or because of the nature I'm reflecting on it: it really repays to revisit old solutions in the light of new knowledge you have gained.
 For example, once you have thought about a new elucidation about Lambda Calculus, it becomes a good exercise to go back to the previous exercises such as the one on
-car&cdr and free-vars/bound-vars to see if you could make them a little bit better. This sort of retrogressive polishing I think will help in creating a good base to
-think about and deal with the problems that arise when constructing programming languages.
+car&cdr and free-vars/bound-vars to see if you could make them a little bit better. This sort of retrogressive polishing I think will help in creating a good base to think about and deal with the problems that arise when constructing programming languages.
+
+The example on finding the free and bound variable in 2.3.2 and using the depth/position notation for variables are some of the challenging exercises which slowly warms up a developer to parsing the syntax of Lambda Calculus.
 
 *Chapter 3*
 - Data abstraction and examples of representational transformations.
