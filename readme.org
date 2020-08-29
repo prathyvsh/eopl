@@ -37,6 +37,11 @@ might need further context building to ground why it is a significant theory for
 
 May be I can supplement it by reading papers like from Landin here?
 
+I don't know if this is by design or because of the nature I'm reflecting on it: it really repays to revisit old solutions in the light of new knowledge you have gained.
+For example, once you have thought about a new elucidation about Lambda Calculus, it becomes a good exercise to go back to the previous exercises such as the one on
+car&cdr and free-vars/bound-vars to see if you could make them a little bit better. This sort of retrogressive polishing I think will help in creating a good base to
+think about and deal with the problems that arise when constructing programming languages.
+
 *Chapter 3*
 - Data abstraction and examples of representational transformations.
 - Syntactic abstractions such as variant record facility.
