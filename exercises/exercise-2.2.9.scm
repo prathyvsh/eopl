@@ -204,47 +204,42 @@
 (equal? (sort-predicate > '(3 2 1)) '(3 2 1))
 (equal? (sort-predicate < '(1 1)) '(1 1))
 
-;; Figured out yet another idea in which you can return a function which will be applied to yield
-;; reverse nesting.
+;; Figured out yet another idea in which you can return nested function which will be
+;; iteratively applied to yield the reverse nesting.
+(define (reverse-nest2 el fn)
+      (lambda (last) (fn (list el last))))
 
-#|
- (define (reverse-nest el l)
-  (if (empty? l) (list 'lst)
-      (if (empty? (cdr l))
-          (if (list? (car l)) (reverse-nest el (car l))
-              (list el (car l)))
-      (list (car l) (reverse-nest el (cdr l))))))
-
-(define (join-scans car-scan cdr-scan errvalue)
+(define (join-scans2 car-scan cdr-scan errvalue)
   (if (and (equal? car-scan errvalue) (equal? cdr-scan errvalue))
       errvalue
       (if (equal? car-scan errvalue)
-          (reverse-nest 'cdr cdr-scan)
-          (reverse-nest 'car car-scan))))
+          (reverse-nest2 'cdr cdr-scan)
+          (reverse-nest2 'car car-scan))))
 
-(define (scan-sexp s sexp errvalue)
+(define (scan-sexp2 s sexp errvalue)
   (if (symbol? sexp)
-      (if (equal? s sexp)'() errvalue)
-      (let ((result (access-pattern s sexp errvalue)))
+      (if (equal? s sexp) (lambda (n) n) errvalue)
+      (let ((result (access-pattern2 s sexp errvalue)))
       (if (equal? result errvalue) errvalue result))))
 
-(define (access-pattern s slst errvalue)
+(define (access-pattern2 s slst errvalue)
   (if (null? slst) errvalue
-          (join-scans (scan-sexp s (car slst) errvalue)
-                      (scan-sexp s (cdr slst) errvalue) errvalue)))
+          (join-scans2 (scan-sexp2 s (car slst) errvalue)
+                      (scan-sexp2 s (cdr slst) errvalue) errvalue)))
 
 (define (car&cdr-fn-helper s slst errvalue init)
-  (let ((result (access-pattern s slst errvalue)))
+  (let ((result (access-pattern2 s slst errvalue)))
   (if (equal? result errvalue) errvalue
       (list 'lambda '(lst) (result init)))))
 
 (define (car&cdr-fn s slst errvalue)
-  ((car&cdr-fn-helper s slst errvalue) '()))
+  (car&cdr-fn-helper s slst errvalue 'lst))
 
 (equal? (car&cdr-fn 'a '() 'fail) 'fail)
+(eval-test car&cdr-fn 'a '(a))
+(eval-test car&cdr-fn 'a '(c b a))
 (eval-test car&cdr-fn 'a '(() ((a))))
 (eval-test car&cdr-fn 'a '(() (a)))
 (eval-test car&cdr-fn 'a '(() (b) a))
 (eval-test car&cdr-fn 'a '(b c d () e (a)))
-(eval-test car&cdr-fn 'a '(() () a)))
-|#
+(eval-test car&cdr-fn 'a '(() () a))
