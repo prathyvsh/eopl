@@ -2,8 +2,12 @@
 
 ;; Thoughts
 ;; In finding out the free variables of an expression, do you necessarily
-;; need to know the bindings so far?
-;; Not really, you only need to know the bindings of the immediate context to
+;; need to know of all the bindings so far?
+;; There are two approaches to this:
+;; In the first approach, if you have all the bindings from the nested contexts
+;; so far, you can give a final absolute answer.
+;; 
+;; With the relative approach, you only need to know the bindings of the immediate context to
 ;; determine if the free variables found so far are bound or not.
 ;; Proceeding in this manner in recursively removing the bound variables, one
 ;; can arrive at the list of free variables.
@@ -173,3 +177,41 @@
 (set-equal? (bound-vars2 '(lambda () (x y))) '())
 (set-equal? (bound-vars2 '(lambda (a) ((lambda (b) b) a))) '(a b))
 (set-equal? (bound-vars2 '(x (y (x z)))) '())
+
+;; Attempt 3
+
+(define (free-or-bound sym free-vars bound-vars bindings)
+  (if (contains? sym bindings)
+      (list free-vars (cons sym bound-vars))
+      (list (cons sym free-vars) bound-vars)))
+      
+(define (process-lambda-fn lexp free-vars bound-vars bindings)
+  (vars-tr-helper (get-exp lexp) free-vars bound-vars (cons (get-binding lexp) bindings)))
+
+(define (process-application exp1 exp2 free-vars bound-vars bindings)
+  (merge (vars-tr-helper exp1 free-vars bound-vars bindings) (vars-tr-helper exp2 free-vars bound-vars bindings)))
+  
+;; exp : <varref> | (lambda (<var>) <exp>) | (<exp> <exp>)
+;; Return (list free-vars bound-vars)
+(define (vars-tr-helper exp free-vars bound-vars bindings)
+  (if (symbol? exp) (free-or-bound exp free-vars bound-vars bindings)
+      (if (equal? (car exp) 'lambda) (process-lambda-fn exp free-vars bound-vars bindings)
+         (process-application (car exp) (cadr exp) free-vars bound-vars bindings))))
+
+(define (free-vars-tr exp) (car (vars-tr-helper exp '() '() '())))
+(define (bound-vars-tr exp) (cadr (vars-tr-helper exp '() '() '())))
+
+(set-equal? (free-vars-tr '(lambda (x) x)) '())
+(set-equal? (free-vars-tr '(lambda () x)) '(x))
+(set-equal? (free-vars-tr '(lambda (y) x)) '(x))
+(set-equal? (free-vars-tr '(lambda (y) y)) '())
+(set-equal? (free-vars-tr '(lambda (x) (lambda (y) x))) '())
+(set-equal? (free-vars-tr '(lambda (x) (lambda (y) (x y)))) '())
+(set-equal? (free-vars-tr '(lambda (x) (lambda (y) y))) '())
+(set-equal? (free-vars-tr '((lambda (q) m) (lambda (m) q))) '(m q))
+(set-equal? (free-vars-tr '(lambda (m) (lambda (n) ((n m) p)))) '(p))
+(set-equal? (free-vars-tr '(lambda (m) (lambda (n) ((n m) ((lambda () m) (lambda () n)))))) '())
+(set-equal? (bound-vars '(lambda (x) (x (lambda (y) (p y))))) '(x y))
+(set-equal? (bound-vars '(lambda () (lambda (x) (lambda (y) (m x))))) '(x))
+(set-equal? (bound-vars '(lambda (m) (lambda (y) (lambda (p) (m y))))) '(m y))
+(set-equal? (bound-vars '(lambda () (x y))) '())

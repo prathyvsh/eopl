@@ -206,15 +206,15 @@
 
 ;; Figured out yet another idea in which you can return nested function which will be
 ;; iteratively applied to yield the reverse nesting.
-(define (reverse-nest2 el fn)
-      (lambda (last) (fn (list el last))))
+(define (reverse-nest-fn head fn)
+      (lambda (tail) (fn (list head tail))))
 
 (define (join-scans2 car-scan cdr-scan errvalue)
   (if (and (equal? car-scan errvalue) (equal? cdr-scan errvalue))
       errvalue
       (if (equal? car-scan errvalue)
-          (reverse-nest2 'cdr cdr-scan)
-          (reverse-nest2 'car car-scan))))
+          (reverse-nest-fn 'cdr cdr-scan)
+          (reverse-nest-fn 'car car-scan))))
 
 (define (scan-sexp2 s sexp errvalue)
   (if (symbol? sexp)
