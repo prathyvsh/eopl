@@ -238,9 +238,11 @@
       (lambda (a b) (string<? (car a) (car b))))) "\n"))
 
 
-(define sections (filter (lambda (n) (equal? (substring (first n) 0 (string-length "Section")) "Section")) logged-dates))
+(define sections (filter (lambda (n) (or (equal? (substring (first n) 0 (string-length "Section")) "Section")
+                                         (equal? (substring (first n) 0 (string-length "Overview")) "Overview"))) logged-dates))
 (define exercises (filter (lambda (n) (equal? (substring (first n) 0 (string-length "Exercise")) "Exercise")) logged-dates))
-(define extras (filter (lambda (n) (not (or (equal? (substring (first n) 0 (string-length "Section")) "Section")
+(define extras (filter (lambda (n) (not (or (or (equal? (substring (first n) 0 (string-length "Overview")) "Overview")
+                                         (equal? (substring (first n) 0 (string-length "Section")) "Section"))
                                                (equal? (substring (first n) 0 (string-length "Exercise")) "Exercise")))) logged-dates))
 
 
@@ -274,6 +276,7 @@
                                                           "** Time taken"
                                                           section-times
                                                           exercise-times
+                                                          extra-times
                                                           "** Log"
                                                    (build-table dates)
                                                    "** Weekly Breakdown"

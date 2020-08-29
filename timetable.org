@@ -5,7 +5,8 @@
 *Elapsed Time*: 34 days
 ** Time taken
 ** Reading
-Time taken: 6 hours 19 minutes
+Time taken: 7 hours 19 minutes
+| Overview | 1 hour |
 | Section 1.1 | 1 hour |
 | Section 1.2 | 1 hour 26 minutes |
 | Section 1.3 | 48 minutes |
@@ -50,6 +51,12 @@ Time taken: 21 hours 41 minutes
 | Exercise 2.3.7 | 6 minutes |
 | Exercise 2.3.8 | 5 minutes |
 | Exercise 2.3.9 | 10 minutes |
+** Extras
+Time taken: 6 hours
+| Adding Breakdown by Each Topic | 1 hour |
+| Adding Weekly Breakdown | 2 hours |
+| Building Timetable Generator | 2 hours |
+| Reading List | 1 hour |
 ** Log
 ** Total Time: 35 hours
 | *Overview*             | *1 hour* |
