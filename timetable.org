@@ -1,8 +1,8 @@
 * Essentials of Programming Languages
 
 *Start Date*: Sunday, July 30th, 2020
-*Latest Work Date*: Sunday, August 31st, 2020
-*Elapsed Time*: 35 days
+*Latest Work Date*: Sunday, September 1st, 2020
+*Elapsed Time*: 36 days
 ** Time taken
 ** Reading
 Time taken: 7 hours 19 minutes
@@ -17,7 +17,7 @@ Time taken: 7 hours 19 minutes
 | Section 2.3 | 31 minutes |
 | Section 2.3.2 | 30 minutes |
 ** Exercises
-Time taken: 23 hours 11 minutes
+Time taken: 25 hours 11 minutes
 | Exercise 1.1.1 | 0 minutes |
 | Exercise 1.2.1 | 15 minutes |
 | Exercise 1.2.2 | 14 minutes |
@@ -42,7 +42,7 @@ Time taken: 23 hours 11 minutes
 | Exercise 2.2.9 - 5 | 30 minutes |
 | Exercise 2.2.9 - 5,6 | 12 minutes |
 | Exercise 2.3.1 | 1 hour 47 minutes |
-| Exercise 2.3.10 | 2 hours 45 minutes |
+| Exercise 2.3.10 | 4 hours 45 minutes |
 | Exercise 2.3.2 | 30 minutes |
 | Exercise 2.3.3 | 4 minutes |
 | Exercise 2.3.4 | 1 minute |
@@ -59,7 +59,7 @@ Time taken: 6 hours 30 minutes
 | Execrise 2.3.10 | 30 minutes |
 | Reading List | 1 hour |
 ** Log
-** Total Time: 37 hours
+** Total Time: 39 hours
 | *Overview*             | *1 hour* |
 | Overview               | 30 minutes          |
 | Overview               | 30 minutes          |
@@ -80,7 +80,7 @@ Time taken: 6 hours 30 minutes
 | Exercise 1.3.4 - 1.3.6 | 7 minutes           |
 | Section 1.3            | 23 minutes          |
 | Exercise 1.3.7         | 11 minutes          |
-| *Section 2*            | *25 hours 19 minutes* |
+| *Section 2*            | *27 hours 19 minutes* |
 | Section 2.1            | 19 minutes          |
 | Section 2.1            | 5 minutes           |
 | Exercise 2.1.1         | 1 minutes           |
@@ -152,6 +152,10 @@ Time taken: 6 hours 30 minutes
 | Exercise 2.3.10        | 30 minutes          |
 | Execrise 2.3.10        | 30 minutes          |
 | Exercise 2.3.10        | 30 minutes          |
+| Exercise 2.3.10        | 30 minutes          |
+| Exercise 2.3.10        | 30 minutes          |
+| Exercise 2.3.10        | 30 minutes          |
+| Exercise 2.3.10        | 30 minutes          |
 | *Extras*               | *6 hours* |
 | Reading List           | 30 minutes          |
 | Reading List           | 30 minutes          |
@@ -206,5 +210,6 @@ Time taken: 6 hours 30 minutes
 | Friday, August 28th, 2020 | 2 hours |
 | Saturday, August 29th, 2020 | 30 minutes |
 | Sunday, August 30th, 2020 | 1 hour 30 minutes |
-| *Week 6* | *2 hours* |
+| *Week 6* | *4 hours* |
 | Monday, August 31st, 2020 | 2 hours |
+| Tuesday, September 1st, 2020 | 2 hours |
