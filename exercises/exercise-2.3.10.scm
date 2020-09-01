@@ -2,6 +2,36 @@
 (require racket/trace)
 
 ;; Approach 1
+;; Solution in a two pass approach
+;; I thought of building up the binding list as
+;; bindings: ({<binding>}*)
+;; tree-of-bindings: (<bindings> | ({<bindings>}*))
+;; So for, (lambda (a) (lambda (b) (a b))
+;; this will build up:
+;; ((a) ((b))
+;; For an if expression, this will give:
+;; (if (lambda (a) a) (lambda (b) b) (lambda (c) c))
+;; the tree:
+;; ((a) (b) (c))
+
+;; While I thought this approach could work, I can see
+;; that name conflicts would become a problem here.
+;; (lambda (x) (lambda (y) (x (lambda (x) x))))
+;; In this expression, the x in the inner expression
+;; is different from the x in the outermost expression.
+;; The required result here is:
+;; (lambda (x) (lambda (y) ((x : 1 0) (lambda (x) (x : 0 0)))
+;; Now collecting the variables will give
+;; ((x) ((y) ((x)))
+;; Using this to acquire the depth will give
+;; x to be 0 0 in both cases giving the expression.
+;; (lambda (x) (lambda (y) ((x : 0 0) (lambda (x) (x : 0 0)))
+;; There needs to be a context sensitivity which needs to
+;; be present when doing the traversal.
+
+;; This can be done by progressively removing the outerbindings
+;; as the traversal is performed with this approach.
+
 (define (find-pos-helper sym los)
 (if (equal? sym (car los)) 0
           (if (find-pos sym (cdr los))
@@ -34,7 +64,7 @@
               (increment-depth (find-dp sym (car lob)))
               (find-dp sym (cdr lob))))))
 
-(equal? (find-dp 'x '(x)) '(0 0))
+(andmap (λ (n) (equal? n true)) (list (equal? (find-dp 'x '(x)) '(0 0))
 (equal? (find-dp 'x '(())) #f)
 (equal? (find-dp 'x '(x y)) '(0 0))
 (equal? (find-dp 'y '(x y)) '(0 1))
@@ -42,9 +72,7 @@
 (equal? (find-dp 'x '(y (x))) '(1 0))
 (equal? (find-dp 'x '(a b c (x))) '(1 0))
 (equal? (find-dp 'x '(a b (c d x))) '(1 2))
-(equal? (find-dp 'x '(a b (c d (x)))) '(2 0))
-
-
+(equal? (find-dp 'x '(a b (c d (x)))) '(2 0))))
 
 (define (if-exp? exp) (eq? (first exp) 'if))
 (define (lambda-exp? exp) (eq? (first exp) 'lambda))
@@ -55,8 +83,23 @@
 (define (get-depth sdp) (cdar sdp))
 (define (get-length sdp) (cdadr sdp))
 
-(define (add-bindings bindings binding-store)
-  (if (empty? binding-store) bindings (append binding-store (list bindings))))
+(define (all-bindings exp)
+  (if (symbol? exp) '()
+      (if (if-exp? exp) (map all-bindings (list (cadr exp)
+                              (caddr exp) (cadddr exp)))
+          (if (lambda-exp? exp)
+              (if (empty? (all-bindings (get-exp exp)))
+                  (get-bindings exp) (list (get-bindings exp) (all-bindings (get-exp exp))))
+              (filter (lambda (n) (not (empty? n))) (map all-bindings exp))))))
+
+(all-bindings '(lambda (a) (lambda (b c) ((if (lambda (x) x) (lambda (y) y) (lambda (z) z)) (a (b c))))))
+(all-bindings '(if (lambda (x) x) (lambda (y) y) (lambda (z) z)))
+
+
+
+  #|
+  (define (add-bindings bindings binding-store)
+  (if (empty? binding-store) bindings (cons binding-store (list bindings))))
 
 (define (add-exp exp exp-store)
   (if (empty? exp-store) exp (cons exp exp-store)))
@@ -94,14 +137,14 @@
 (define (lexical-address exp)
   (car (lexical-address-tr exp '() '() -1)))
 
-(trace lexical-address-tr)
 
 (equal? (lexical-address 'a) '(a : 0 0))
 (equal? (lexical-address '(lambda (a) a)) '(lambda (a) (a : 0 0)))
 (equal? (lexical-address '(lambda (x y) y)) '(lambda (x y) (y : 0 1)))
 (equal? (lexical-address '(lambda () m)) '(lambda () (m : 0 0)))
 (equal? (lexical-address '(lambda (a b c) m)) '(lambda (a b c) (m : 0 0)))
-; (equal? (lexical-address '(x y)) '((x : 0 0) (y : 0 1)))
+;(equal? (lexical-address '(x y)) '((x : 0 0) (y : 0 1)))
 (equal? (lexical-address '(lambda (x y) (x y))) '(lambda (x) '((x : 0 0) (y : 0 1))))
 ;(equal? (lexical-address '(lambda (x) (lambda (y) y))) '(lambda (x) (lambda (y) '(y : 1 0))))
 (equal? (lexical-address '(lambda (x y) ((lambda (a) (x (a y))) x))) '(lambda (x y) ((lambda (a) ((x : 1 0) ((a: 0 0) (y: 1 1)))))))
+|#
