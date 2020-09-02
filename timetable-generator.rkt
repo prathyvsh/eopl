@@ -158,6 +158,7 @@
           (list "Exercise 2.3.10" (stamp 10 01 1 9 2020) (stamp 10 31 1 9 2020))
           (list "Exercise 2.3.10" (stamp 10 57 1 9 2020) (stamp 11 27 1 9 2020))
           (list "Exercise 2.3.10" (stamp 11 48 1 9 2020) (stamp 12 18 1 9 2020))
+          (list "Exercise 2.2.9 - 4" (stamp 14 21 2 9 2020) (stamp 14 51 2 9 2020))
           ))
    
    (list "Extras"
