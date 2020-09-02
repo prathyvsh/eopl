@@ -74,7 +74,7 @@ structures which would be used in building up an interpreter later in the book.
 The 2nd part in Exercise 2.2.9 is a bit challenging and made me think about the differences in order of construction
 in structural recursion vs. tail recursion.
 
-* Associativitiy of composition
+* Associativity of composition
 
 In the previous examples there was a problem of having wrong nesting when trying to build up the path trace in a list.
 This meant that a structural recursion would yield
