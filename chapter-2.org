@@ -55,7 +55,7 @@ The data structure (a . b . c) while not permissible with the grammar defined in
 valid data structure in Racket. [[https://stackoverflow.com/questions/7449865/scheme-lists-of-three-dotted-elements-returning-strangely-like-an-infix-operat][Stack Overflow]] reveals that it is a modification done on the reader that treats the . as an
 infix operator.
 
-* Context Free and Context Sensitive *
+* Context Free and Context Sensitive
 BNF notation is context free as a rule defining a given syntactic category may be applied in any context that makes reference to that syntactic category.
 Context Sensitivity means that the state of the given context in which it is being applied matters. This is illustrated with the help of the syntactical construction of a binary search tree.
 
@@ -64,7 +64,7 @@ Such constraints are said to be enforced with the help of formal methods. Since 
 
 Think this is a good point at which to refer how ambiguity can arise in a context free setting.
 
-*Structural Recursion*
+* Structural Recursion
 When defining a program based on structural induction, the structure of the program should be patterned after the structure of the data.
 
 * Exercise
@@ -74,16 +74,28 @@ structures which would be used in building up an interpreter later in the book.
 The 2nd part in Exercise 2.2.9 is a bit challenging and made me think about the differences in order of construction
 in structural recursion vs. tail recursion.
 
-*Associativitiy of composition*
+* Associativity of composition
 
 In the previous examples there was a problem of having wrong nesting when trying to build up the path trace in a list.
-This meant that a structural recursion would yield (((() c) b) a) instead of (c (b (a ()))). This meant that the path
-needs to be reversed to achieve the proper context or coupling for the elements in a list. This can be achieved using
-tail recursion. Now, the same bracketing when composing and applying to an argument yields the same result. I realised
-this when working through Example 2.2.9/4 where I found out that the reverse sequence gets executed when creating a
-series of compositions. This means that when the operation is associative, the bracketing order doesn't matter
-which is indeed a trivial observation, but the distinction here is, even nesting doesn't make a difference.
-That is (composition ident c b a) can be represented as both (((ident c) b) a) and (ident (c (b a)))
+This meant that a structural recursion would yield
+
+#+BEGIN_SRC :scheme
+(((() c) b) a)
+#+END_SRC
+instead of
+
+#+BEGIN_SRC :scheme
+(c (b (a ())))
+#+END_SRC
+
+This meant the trace path needs to be reversed to achieve the proper context of coupling for the elements in the list.
+This can be achieved using tail recursion.
+
+Now, a realization that dawned no me was that both expressinos when composing and applying to an argument yields the same result.
+
+I realised this when working through Example 2.2.9/4 where I found out that the reverse sequence getting executed also gave the correct result
+when creating a series of compositions. This was possible because the composition operation is associative. This means the bracketing order doesn't matter
+which is indeed a trivial observation / definition of operators with associativity. But the distinction here is the extension that even nesting multiple times doesn't make a difference. That is (composition ident c b a) can be represented as both (((ident c) b) a) and (ident (c (b a))). This I figured out leads to ideas such as the [[https://en.wikipedia.org/wiki/Tamari_lattice][Tamari Lattice]] and [[https://en.wikipedia.org/wiki/Associahedron][Associahedron]].
 
 ** Static vs. Dynamic properties
 
