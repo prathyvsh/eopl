@@ -1,5 +1,4 @@
 #lang scheme
-(require racket/trace)
 
 ;; Helpers
 (define (if-exp? exp) (eq? (first exp) 'if))
@@ -7,25 +6,12 @@
 (define (get-bindings exp) (cadr exp))
 (define (get-exp exp) (caddr exp))
 
-#|
-(define (get-symbol sdp) (car sdp))
-(define (get-depth sdp) (cdar sdp))
-(define (get-length sdp) (cdadr sdp))
-|#
-
-(define (find-pos-helper sym los)
-(if (equal? sym (car los)) 0
-          (if (find-pos sym (cdr los))
-              (+ 1 (find-pos sym (cdr los)))
-              #f)))
-          
-(define (find-pos sym los)
+(define (find-pos-helper sym los pos)
   (if (null? los) #f
-      (find-pos-helper sym los)))
+      (if (equal? sym (car los)) pos
+          (find-pos-helper sym (cdr los) (+ 1 pos)))))
 
-; (define (increment-depth result)
-;   (if result (list (+ (car result) 1) (cadr result))
-;       result))
+(define (find-pos sym los) (find-pos-helper sym los 0))
 
 ;; Approach 1
 ;; Solution in a two pass approach
@@ -69,7 +55,6 @@
 (equal? (find-dp 'x '((y) (x))) (list 1 0))
 (equal? (find-dp 'x '((y) (x) (m n))) (list 1 0))
 
-
 ;; Uses cadr of result as the free-var-count for the continuation
 (define (build-app-helper fst-app exp bindings depth)
   (if (null? exp) '()
@@ -92,7 +77,8 @@
 
 (define (build-if-application result)
   (list (cons 'if (car result)) (cadr result)))
-; la-helper exp bindings store free-var-count depth
+
+
 (define (la-helper exp bindings free-var-count env-depth)
   (if (symbol? exp)
       (assign-dp exp (find-dp exp bindings) free-var-count env-depth)
