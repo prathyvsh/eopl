@@ -17,6 +17,33 @@
 
 ;; Failed attempt
 
+;; Solution in a two pass approach
+;; I thought of building up the binding list as
+;; bindings: ({<binding>}*)
+;; tree-of-bindings: (<bindings> | ({<bindings>}*))
+;; So for, (lambda (a) (lambda (b) (a b))
+;; this will build up:
+;; ((a) ((b))
+;; For an if expression, this will give:
+;; (if (lambda (a) a) (lambda (b) b) (lambda (c) c))
+;; the tree:
+;; ((a) (b) (c))
+
+;; While I thought this approach could work, I can see
+;; that variable shadowing would become a problem here.
+;; (lambda (x) (lambda (y) (x (lambda (x) x))))
+;; In this expression, the x in the inner expression
+;; is different from the x in the outermost expression.
+;; The required result here is:
+;; (lambda (x) (lambda (y) ((x : 1 0) (lambda (x) (x : 0 0)))
+;; Now collecting the variables will give
+;; ((x) ((y) ((x)))
+;; Using this to acquire the depth will give
+;; x to be 0 0 in both cases giving the expression.
+;; (lambda (x) (lambda (y) ((x : 0 0) (lambda (x) (x : 0 0)))
+;; There needs to be a particular context sensitivity which needs to
+;; be present when doing the traversal.
+
 ;; One of the attempts to acquire the depth information by using
 ;; all the bindings of a lambda expression and then getting
 ;; finding the depth/position of the variable in the so formed tree.
@@ -30,7 +57,6 @@
 
 (define (get-sub-exp-bindings list-of-sub-exps)
   (filter (lambda (n) (not (empty? n))) (map all-bindings list-of-sub-exps)))
-
 
 (define (all-bindings exp)
   (if (symbol? exp) '()
