@@ -1,8 +1,8 @@
 * Essentials of Programming Languages
 
 *Start Date*: Sunday, July 30th, 2020
-*Latest Work Date*: Sunday, September 6th, 2020
-*Elapsed Time*: 41 days
+*Latest Work Date*: Sunday, September 9th, 2020
+*Elapsed Time*: 44 days
 ** Time taken
 ** Reading
 Time taken: 7 hours 19 minutes
@@ -17,7 +17,7 @@ Time taken: 7 hours 19 minutes
 | Section 2.3 | 31 minutes |
 | Section 2.3.2 | 30 minutes |
 ** Exercises
-Time taken: 30 hours 41 minutes
+Time taken: 33 hours 11 minutes
 | Exercise 1.1.1 | 0 minutes |
 | Exercise 1.2.1 | 15 minutes |
 | Exercise 1.2.2 | 14 minutes |
@@ -42,7 +42,7 @@ Time taken: 30 hours 41 minutes
 | Exercise 2.2.9 - 5 | 30 minutes |
 | Exercise 2.2.9 - 5,6 | 12 minutes |
 | Exercise 2.3.1 | 1 hour 47 minutes |
-| Exercise 2.3.10 | 9 hours 15 minutes |
+| Exercise 2.3.10 | 11 hours 45 minutes |
 | Exercise 2.3.11-13 | 30 minutes |
 | Exercise 2.3.2 | 30 minutes |
 | Exercise 2.3.3 | 4 minutes |
@@ -53,14 +53,15 @@ Time taken: 30 hours 41 minutes
 | Exercise 2.3.8 | 5 minutes |
 | Exercise 2.3.9 | 10 minutes |
 ** Extras
-Time taken: 6 hours 30 minutes
+Time taken: 7 hours
 | Adding Breakdown by Each Topic | 1 hour |
 | Adding Weekly Breakdown | 2 hours |
 | Building Timetable Generator | 2 hours |
 | Execrise 2.3.10 | 30 minutes |
+| Exercis 2.3.10 | 30 minutes |
 | Reading List | 1 hour |
 ** Log
-** Total Time: 44 hours 30 minutes
+** Total Time: 47 hours 30 minutes
 | *Overview*             | *1 hour* |
 | Overview               | 30 minutes          |
 | Overview               | 30 minutes          |
@@ -81,7 +82,7 @@ Time taken: 6 hours 30 minutes
 | Exercise 1.3.4 - 1.3.6 | 7 minutes           |
 | Section 1.3            | 23 minutes          |
 | Exercise 1.3.7         | 11 minutes          |
-| *Section 2*            | *32 hours 49 minutes* |
+| *Section 2*            | *35 hours 49 minutes* |
 | Section 2.1            | 19 minutes          |
 | Section 2.1            | 5 minutes           |
 | Exercise 2.1.1         | 1 minutes           |
@@ -168,6 +169,12 @@ Time taken: 6 hours 30 minutes
 | Exercise 2.3.10        | 30 minutes          |
 | Exercise 2.3.10        | 30 minutes          |
 | Exercise 2.3.10        | 30 minutes          |
+| Exercise 2.3.10        | 30 minutes          |
+| Exercise 2.3.10        | 30 minutes          |
+| Exercise 2.3.10        | 30 minutes          |
+| Exercise 2.3.10        | 30 minutes          |
+| Exercise 2.3.10        | 30 minutes          |
+| Exercis 2.3.10         | 30 minutes          |
 | *Extras*               | *6 hours* |
 | Reading List           | 30 minutes          |
 | Reading List           | 30 minutes          |
@@ -230,3 +237,7 @@ Time taken: 6 hours 30 minutes
 | Friday, September 4th, 2020 | 3 hours |
 | Saturday, September 5th, 2020 | 0 minutes |
 | Sunday, September 6th, 2020 | 2 hours |
+| *Week 7* | *3 hours* |
+| Monday, September 7th, 2020 | 0 minutes |
+| Tuesday, September 8th, 2020 | 1 hour |
+| Wednesday, September 9th, 2020 | 2 hours |

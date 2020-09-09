@@ -48,7 +48,6 @@
 ;; Note: By thinking about separating the concerns I got a new approach (C),
 ;; which unearthed an error in Approach B: That is free-variables were
 ;; always assigned a new index instead of reusing it.
-;; I introduce this as Approach B.1 with the correction. 
 
 ;; Approach A
 
@@ -115,49 +114,52 @@
 (define (lexical-address-A exp)
   (car (index-free-vars (index-bindings exp '()) '() 0)))
 
-(equal? (lexical-address-A '(lambda (a) a)) '(lambda (a) (a : 0 0)))
-(equal? (lexical-address-A '(lambda (a) b)) '(lambda (a) (b : 1 0)))
-(equal? (lexical-address-A '(a b)) '((a : 0 0) (b : 0 1)))
-(equal? (lexical-address-A '(a (b b))) '((a : 0 0) ((b : 0 1) (b : 0 1))))
-(equal? (lexical-address-A '(cons a (cons b c))) '((cons : 0 0) (a : 0 1) ((cons : 0 0) (b : 0 2) (c : 0 3))))
-(equal? (lexical-address-A '(lambda (a b c) (cons a (cons b c)))) '(lambda (a b c) ((cons : 1 0) (a : 0 0) ((cons : 1 0) (b : 0 1) (c : 0 2)))))
-(equal? (lexical-address-A '(lambda (a) a)) '(lambda (a) (a : 0 0)))
-(equal? (lexical-address-A '(lambda (x y) y)) '(lambda (x y) (y : 0 1)))
-(equal? (lexical-address-A '(x y)) '((x : 0 0) (y : 0 1)))
-(equal? (lexical-address-A '(lambda (x y) (x y))) '(lambda (x y) ((x : 0 0) (y : 0 1))))
-(equal? (lexical-address-A '(lambda (x) (lambda (y) y))) '(lambda (x) (lambda (y) (y : 0 0))))
-(equal? (lexical-address-A '(lambda (x) (lambda (y) x))) '(lambda (x) (lambda (y) (x : 1 0))))
-(equal? (lexical-address-A '(lambda (x) (x x))) '(lambda (x) ((x : 0 0) (x : 0 0))))
-(equal? (lexical-address-A '(lambda (x) (x (x x)))) '(lambda (x) ((x : 0 0) ((x : 0 0) (x : 0 0)))))
-(equal? (lexical-address-A '(lambda (a b c d ) (a ((b c) d)))) '(lambda (a b c d) ((a : 0 0) (((b : 0 1) (c : 0 2)) (d : 0 3)))))
-(equal? (lexical-address-A '(lambda (x y) ((lambda (a) (x (a y))) x))) '(lambda (x y) ((lambda (a) ((x : 1 0) ((a : 0 0) (y : 1 1)))) (x : 0 0))))
-(equal? (lexical-address-A '(lambda (x y) (lambda (a) (a (x y))))) '(lambda (x y) (lambda (a) ((a : 0 0) ((x : 1 0) (y : 1 1))))))
-(equal? (lexical-address-A '(lambda (a) (a (lambda (y) a)))) '(lambda (a) ((a : 0 0) (lambda (y) (a : 1 0)))))
-(equal? (lexical-address-A '(lambda () m)) '(lambda () (m : 1 0)))
-(equal? (lexical-address-A '(lambda (a b c) m)) '(lambda (a b c) (m : 1 0)))
-(equal? (lexical-address-A '(lambda (x) (m (lambda (y) n)))) '(lambda (x) ((m : 1 0) (lambda (y) (n : 2 1)))))
-(equal? (lexical-address-A '(lambda (x) (lambda (y) (m (a (lambda (z) n))))))
+(define (test-suite fn)
+(list (equal? (fn '(lambda (a) a)) '(lambda (a) (a : 0 0)))
+(equal? (fn '(lambda (a) b)) '(lambda (a) (b : 1 0)))
+(equal? (fn '(a b)) '((a : 0 0) (b : 0 1)))
+(equal? (fn '(a (b b))) '((a : 0 0) ((b : 0 1) (b : 0 1))))
+(equal? (fn '(cons a (cons b c))) '((cons : 0 0) (a : 0 1) ((cons : 0 0) (b : 0 2) (c : 0 3))))
+(equal? (fn '(lambda (a b c) (cons a (cons b c)))) '(lambda (a b c) ((cons : 1 0) (a : 0 0) ((cons : 1 0) (b : 0 1) (c : 0 2)))))
+(equal? (fn '(lambda (a) a)) '(lambda (a) (a : 0 0)))
+(equal? (fn '(lambda (x y) y)) '(lambda (x y) (y : 0 1)))
+(equal? (fn '(x y)) '((x : 0 0) (y : 0 1)))
+(equal? (fn '(lambda (x y) (x y))) '(lambda (x y) ((x : 0 0) (y : 0 1))))
+(equal? (fn '(lambda (x) (lambda (y) y))) '(lambda (x) (lambda (y) (y : 0 0))))
+(equal? (fn '(lambda (x) (lambda (y) x))) '(lambda (x) (lambda (y) (x : 1 0))))
+(equal? (fn '(lambda (x) (x x))) '(lambda (x) ((x : 0 0) (x : 0 0))))
+(equal? (fn '(lambda (x) (x (x x)))) '(lambda (x) ((x : 0 0) ((x : 0 0) (x : 0 0)))))
+(equal? (fn '(lambda (a b c d ) (a ((b c) d)))) '(lambda (a b c d) ((a : 0 0) (((b : 0 1) (c : 0 2)) (d : 0 3)))))
+(equal? (fn '(lambda (x y) ((lambda (a) (x (a y))) x))) '(lambda (x y) ((lambda (a) ((x : 1 0) ((a : 0 0) (y : 1 1)))) (x : 0 0))))
+(equal? (fn '(lambda (x y) (lambda (a) (a (x y))))) '(lambda (x y) (lambda (a) ((a : 0 0) ((x : 1 0) (y : 1 1))))))
+(equal? (fn '(lambda (a) (a (lambda (y) a)))) '(lambda (a) ((a : 0 0) (lambda (y) (a : 1 0)))))
+(equal? (fn '(lambda () m)) '(lambda () (m : 1 0)))
+(equal? (fn '(lambda (a b c) m)) '(lambda (a b c) (m : 1 0)))
+(equal? (fn '(lambda (x) (m (lambda (y) n)))) '(lambda (x) ((m : 1 0) (lambda (y) (n : 2 1)))))
+(equal? (fn '(lambda (x) (lambda (y) (m (a (lambda (z) n))))))
         '(lambda (x) (lambda (y) ((m : 2 0) ((a : 2 1) (lambda (z) (n : 3 2)))))))
- (equal? (lexical-address-A '(if a x y)) '(if (a : 0 0) (x : 0 1) (y : 0 2)))
-(equal? (lexical-address-A '(if (eq? a b) x y)) '(if ((eq? : 0 0) (a : 0 1) (b : 0 2)) (x : 0 3) (y : 0 4)))
-(equal? (lexical-address-A '(lambda (a b c) (if (eq? b c) ((lambda (c) (cons a c)) a) b)))
+ (equal? (fn '(if a x y)) '(if (a : 0 0) (x : 0 1) (y : 0 2)))
+(equal? (fn '(if (eq? a b) x y)) '(if ((eq? : 0 0) (a : 0 1) (b : 0 2)) (x : 0 3) (y : 0 4)))
+(equal? (fn '(lambda (a b c) (if (eq? b c) ((lambda (c) (cons a c)) a) b)))
         '(lambda (a b c) (if ((eq? : 1 0) (b : 0 1) (c : 0 2))
                              ((lambda (c) ((cons : 2 1) (a : 1 0) (c : 0 0))) (a : 0 0)) (b : 0 1))))
-(equal? (lexical-address-A '(lambda (b) (if ((lambda (b) c) b)
+(equal? (fn '(lambda (b) (if ((lambda (b) c) b)
                                           (lambda (a) (a b)) (lambda (c) m))))
         '(lambda (b) (if ((lambda (b) (c : 2 0)) (b : 0 0))
                          (lambda (a) ((a : 0 0) (b : 1 0))) (lambda (c) (m : 2 1)))))
-(equal? (lexical-address-A '(lambda (a b c) (cons a (cons b c)))) '(lambda (a b c) ((cons : 1 0) (a : 0 0)
+(equal? (fn '(lambda (a b c) (cons a (cons b c)))) '(lambda (a b c) ((cons : 1 0) (a : 0 0)
                                                                                         ((cons : 1 0)
-                                                                                          (b : 0 1) (c : 0 2)))))
+                                                                                          (b : 0 1) (c : 0 2)))))))
+(test-suite lexical-address-A)
 
-(define (build-lambda-exp bindings result)
+;; Approach B
+
+ (define (build-lambda-exp bindings result)
   (list (list 'lambda bindings (car result)) (cadr result)))
 
-(define (build-if-application result)
+ (define (build-if-application result)
   (list (cons 'if (car result)) (cadr result)))
 
-;; Uses cadr of result as the free-var-count for the continuation
 (define (build-list-helper fst-app exp bindings depth)
   (if (null? exp) '()
       (list (cons (car fst-app)
@@ -166,71 +168,60 @@
 
 (define (build-list exp bindings free-var-count depth)
   (if (null? exp) (list '() free-var-count)
-      (build-list-helper (la-helper (car exp) bindings free-var-count depth)
+      (build-list-helper (la-helper-B (car exp) bindings free-var-count depth)
                          exp bindings depth)))
 
-(define (assign-dp exp dp free-var-count env-depth)
+(define (assign-dp-B exp dp free-vars env-depth)
   (if dp
-      (list (append (list exp ':) dp) free-var-count)
-      (list (append (list exp ':) (list env-depth free-var-count)) (+ free-var-count 1))))
+      (list (append (list exp ':) dp) free-vars)
+      (if (contains? exp free-vars)
+          (list (append (list exp ':) (list env-depth (find-pos exp free-vars))) free-vars)
+          (list (append (list exp ':) (list env-depth (length free-vars))) (append free-vars (list exp))))))
 
-
-
-(define (la-helper exp bindings free-var-count env-depth)
+(define (la-helper-B exp bindings free-vars env-depth)
   (if (symbol? exp)
-      (assign-dp exp (find-dp exp bindings) free-var-count env-depth)
-      (if (if-exp? exp) (build-if-application (build-list (cdr exp) bindings free-var-count env-depth)) 
+      (assign-dp-B exp (find-dp exp bindings) free-vars env-depth)
+      (if (if-exp? exp) (build-if-application (build-list (cdr exp) bindings free-vars env-depth)) 
           (if (lambda-exp? exp)
-              (build-lambda-exp (get-bindings exp) (la-helper (get-exp exp) (cons (get-bindings exp) bindings) free-var-count (+ 1 env-depth)))
-              (build-list exp bindings free-var-count env-depth)))))
+              (build-lambda-exp (get-bindings exp) (la-helper-B (get-exp exp) (cons (get-bindings exp) bindings) free-vars (+ 1 env-depth)))
+              (build-list exp bindings free-vars env-depth)))))
 
-(define (lexical-address exp) (car (la-helper exp '() 0 0)))
+(define (lexical-address-B exp) (car (la-helper-B exp '() '() 0)))
 
-#|
-; Simple expressions
-(equal? (lexical-address '(lambda (a) a)) '(lambda (a) (a : 0 0)))
-(equal? (lexical-address '(lambda (x y) y)) '(lambda (x y) (y : 0 1)))
-(equal? (lexical-address '(x y)) '((x : 0 0) (y : 0 1)))
-(equal? (lexical-address '(lambda (x y) (x y))) '(lambda (x y) ((x : 0 0) (y : 0 1))))
-(equal? (lexical-address '(lambda (x) (lambda (y) y))) '(lambda (x) (lambda (y) (y : 0 0))))
-(equal? (lexical-address '(lambda (x) (lambda (y) x))) '(lambda (x) (lambda (y) (x : 1 0))))
-(equal? (lexical-address '(lambda (x) (x x))) '(lambda (x) ((x : 0 0) (x : 0 0))))
-
-; Multiple application
-(equal? (lexical-address '(lambda (x) (x (x x)))) '(lambda (x) ((x : 0 0) ((x : 0 0) (x : 0 0)))))
-(equal? (lexical-address '(lambda (a b c d ) (a ((b c) d)))) '(lambda (a b c d) ((a : 0 0) (((b : 0 1) (c : 0 2)) (d : 0 3)))))
-(equal? (lexical-address '(lambda (x y) ((lambda (a) (x (a y))) x))) '(lambda (x y) ((lambda (a) ((x : 1 0) ((a : 0 0) (y : 1 1)))) (x : 0 0))))
-(equal? (lexical-address '(lambda (x y) (lambda (a) (a (x y))))) '(lambda (x y) (lambda (a) ((a : 0 0) ((x : 1 0) (y : 1 1))))))
-(equal? (lexical-address '(lambda (a) (a (lambda (y) a)))) '(lambda (a) ((a : 0 0) (lambda (y) (a : 1 0)))))
-
-; Unbound variables
-(equal? (lexical-address '(lambda () m)) '(lambda () (m : 1 0)))
-(equal? (lexical-address '(lambda (a b c) m)) '(lambda (a b c) (m : 1 0)))
-(equal? (lexical-address '(lambda (x) (m (lambda (y) n)))) '(lambda (x) ((m : 1 0) (lambda (y) (n : 2 1)))))
-(equal? (lexical-address '(lambda (x) (lambda (y) (m (a (lambda (z) n))))))
-        '(lambda (x) (lambda (y) ((m : 2 0) ((a : 2 1) (lambda (z) (n : 3 2)))))))
-
-; If Expressions
-(equal? (lexical-address '(if a x y)) '(if (a : 0 0) (x : 0 1) (y : 0 2)))
-(equal? (lexical-address '(if (eq? a b) x y)) '(if ((eq? : 0 0) (a : 0 1) (b : 0 2)) (x : 0 3) (y : 0 4)))
-
-(equal? (lexical-address '(lambda (a b c) (if (eq? b c) ((lambda (c) (cons a c)) a) b)))
-        '(lambda (a b c) (if ((eq? : 1 0) (b : 0 1) (c : 0 2))
-                             ((lambda (c) ((cons : 2 1) (a : 1 0) (c : 0 0))) (a : 0 0)) (b : 0 1))))
-
-(equal? (lexical-address '(lambda (b) (if ((lambda (b) c) b)
-                                          (lambda (a) (a b)) (lambda (c) m))))
-        '(lambda (b) (if ((lambda (b) (c : 2 0)) (b : 0 0))
-                         (lambda (a) ((a : 0 0) (b : 1 0))) (lambda (c) (m : 2 1)))))
-
-(equal? (lexical-address '(lambda (a b c) (cons a (cons b c)))) '(lambda (a b c) ((cons : 1 0) (a : 0 0)
-                                                                                         ((cons : 1 0)
-                                                                                          (b : 0 1) (c : 0 2)))))
-
-|#
+(test-suite lexical-address-B)
 
 ;; Approach C
 ;; The idea is to perform the search and whenever there is a free variable encountered
 ;; it is added to a top-level store and the count of the store is used for indexing it.
 ;; This avoids the need to keep track of an integer to count the number of free variables
 ;; served and it falls out as the length of the store.
+
+;; In order to make this work, the bindings found when tracing through a particular branch
+;; of the tree needs to be accumulated to work on the next branch.
+;; Say you have a tree: (a (b (c)) (d e)), the set a b c needs to be present when traversing
+;; d e.
+
+(define (build-store exp store bindings free-vars depth)
+  (if (find-dp exp bindings)
+      (list (append store (list (append (list exp ':) (find-dp exp bindings)))) bindings free-vars depth)
+      (if (contains? exp free-vars)
+          (list (append store (list (append (list exp ':) (list depth (find-pos exp free-vars))))) bindings free-vars depth)
+          (list (append store (list (append (list exp ':) (list depth (length free-vars))))) bindings (append free-vars (list exp)) depth))))
+
+(define (build-list-C exp store bindings free-vars depth)
+  (if (null? exp) (list store bindings free-vars depth)
+      (apply build-list-C (append (list (cdr exp)) (lexical-helper-C (car exp) (append store '(())) bindings free-vars depth)))))
+  
+(define (lexical-helper-C exp store bindings free-vars depth)
+  (if (symbol? exp) (build-store exp store bindings free-vars depth)
+      (if (lambda-exp? exp)
+          (lexical-helper-C (get-exp exp)
+                            (append store (list 'lambda (get-bindings exp))) (append bindings (list (get-bindings exp))) free-vars (+ depth 1))
+          (build-list-C exp store bindings free-vars depth))))
+      
+(define (lexical-address-C exp) (car (lexical-helper-C exp '() '() '() 0)))
+
+(test-suite lexical-address-C)
+
+
+;(trace-tr '(a))
