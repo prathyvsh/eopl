@@ -115,7 +115,8 @@
   (car (index-free-vars (index-bindings exp '()) '() 0)))
 
 (define (test-suite fn)
-(list (equal? (fn '(lambda (a) a)) '(lambda (a) (a : 0 0)))
+(andmap (lambda (n) (eq? n true)) (list
+ (equal? (fn '(lambda (a) a)) '(lambda (a) (a : 0 0)))
 (equal? (fn '(lambda (a) b)) '(lambda (a) (b : 1 0)))
 (equal? (fn '(a b)) '((a : 0 0) (b : 0 1)))
 (equal? (fn '(a (b b))) '((a : 0 0) ((b : 0 1) (b : 0 1))))
@@ -138,18 +139,41 @@
 (equal? (fn '(lambda (x) (m (lambda (y) n)))) '(lambda (x) ((m : 1 0) (lambda (y) (n : 2 1)))))
 (equal? (fn '(lambda (x) (lambda (y) (m (a (lambda (z) n))))))
         '(lambda (x) (lambda (y) ((m : 2 0) ((a : 2 1) (lambda (z) (n : 3 2)))))))
+
  (equal? (fn '(if a x y)) '(if (a : 0 0) (x : 0 1) (y : 0 2)))
+
+ 
 (equal? (fn '(if (eq? a b) x y)) '(if ((eq? : 0 0) (a : 0 1) (b : 0 2)) (x : 0 3) (y : 0 4)))
+
+
 (equal? (fn '(lambda (a b c) (if (eq? b c) ((lambda (c) (cons a c)) a) b)))
         '(lambda (a b c) (if ((eq? : 1 0) (b : 0 1) (c : 0 2))
                              ((lambda (c) ((cons : 2 1) (a : 1 0) (c : 0 0))) (a : 0 0)) (b : 0 1))))
+
 (equal? (fn '(lambda (b) (if ((lambda (b) c) b)
                                           (lambda (a) (a b)) (lambda (c) m))))
         '(lambda (b) (if ((lambda (b) (c : 2 0)) (b : 0 0))
                          (lambda (a) ((a : 0 0) (b : 1 0))) (lambda (c) (m : 2 1)))))
 (equal? (fn '(lambda (a b c) (cons a (cons b c)))) '(lambda (a b c) ((cons : 1 0) (a : 0 0)
                                                                                         ((cons : 1 0)
-                                                                                          (b : 0 1) (c : 0 2)))))))
+                                                                                          (b : 0 1) (c : 0 2)))))
+
+(equal? (fn '(lambda (a b c) ((cons a (cons b ((lambda (c) c) d))) (lambda (d) (x y ((lambda (d) d) e))))))
+        '(lambda (a b c) (((cons : 1 0) (a : 0 0)
+                                        ((cons : 1 0) (b : 0 1)
+                                                      ((lambda (c) (c : 0 0)) (d : 1 1))))
+                          (lambda (d) ((x : 2 2) (y : 2 3) ((lambda (d) (d : 0 0)) (e : 2 4)))))))
+
+
+(equal? (fn '(lambda (a) ((lambda (b)
+                            (lambda (c)
+                              c)) (lambda (d)
+                                    (lambda (e) d)))))
+        '(lambda (a) ((lambda (b) (lambda (c) (c : 0 0))) (lambda (d) (lambda (e) (d : 1 0))))))
+
+
+)))
+
 (test-suite lexical-address-A)
 
 ;; Approach B
@@ -201,27 +225,39 @@
 ;; Say you have a tree: (a (b (c)) (d e)), the set a b c needs to be present when traversing
 ;; d e.
 
-(define (build-store exp store bindings free-vars depth)
+(define (build-store exp bindings free-vars depth)
   (if (find-dp exp bindings)
-      (list (append store (list (append (list exp ':) (find-dp exp bindings)))) bindings free-vars depth)
+      (list (append (list exp ':) (find-dp exp bindings)) bindings free-vars depth)
       (if (contains? exp free-vars)
-          (list (append store (list (append (list exp ':) (list depth (find-pos exp free-vars))))) bindings free-vars depth)
-          (list (append store (list (append (list exp ':) (list depth (length free-vars))))) bindings (append free-vars (list exp)) depth))))
+          (list (append (list exp ':) (list depth (find-pos exp free-vars))) bindings free-vars depth)
+          (list (append (list exp ':) (list depth (length free-vars))) bindings (append free-vars (list exp)) depth))))
+
+(define (process-list-entry exp store bindings depth)
+  (cons (append store (list (car exp))) (list bindings (caddr exp) depth)))
 
 (define (build-list-C exp store bindings free-vars depth)
   (if (null? exp) (list store bindings free-vars depth)
-      (apply build-list-C (append (list (cdr exp)) (lexical-helper-C (car exp) (append store '(())) bindings free-vars depth)))))
+      (apply build-list-C (append (list (cdr exp))
+                            (process-list-entry (lexical-helper-C (car exp) '() bindings free-vars depth) store bindings depth)))))
+
+(define (build-context exp lbindings gbindings free-vars depth)
+  (lexical-helper-C (get-exp exp) '() (cons lbindings gbindings) free-vars (+ depth 1)))
+
+(define (build-lambda ctx store lbindings depth)
+  (list (list 'lambda lbindings (car ctx)) (cadr ctx) (caddr ctx) (+ depth 1)))
   
+(define (process-lambda exp store bindings free-vars depth)
+  (build-lambda (build-context exp (get-bindings exp) bindings free-vars depth) store (get-bindings exp) depth))
+
+(define (build-if exp bindings free-vars depth)
+  (list (cons 'if (car exp)) bindings free-vars depth))
+
 (define (lexical-helper-C exp store bindings free-vars depth)
-  (if (symbol? exp) (build-store exp store bindings free-vars depth)
-      (if (lambda-exp? exp)
-          (lexical-helper-C (get-exp exp)
-                            (append store (list 'lambda (get-bindings exp))) (append bindings (list (get-bindings exp))) free-vars (+ depth 1))
-          (build-list-C exp store bindings free-vars depth))))
+  (if (symbol? exp) (build-store exp bindings free-vars depth)
+      (if (lambda-exp? exp) (process-lambda exp store bindings free-vars depth)
+          (if (if-exp? exp) (build-if (build-list-C (cdr exp) store bindings free-vars depth) bindings free-vars depth)
+              (build-list-C exp store bindings free-vars depth)))))
       
 (define (lexical-address-C exp) (car (lexical-helper-C exp '() '() '() 0)))
 
 (test-suite lexical-address-C)
-
-
-;(trace-tr '(a))
