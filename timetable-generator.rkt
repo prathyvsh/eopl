@@ -178,6 +178,7 @@
           (list "Section 2.3.3" (stamp 13 33 9 9 2020) (stamp 13 39 9 9 2020))
           (list "Exercise 2.3.14" (stamp 13 39 9 9 2020) (stamp 14 03 9 9 2020))
           (list "Exercise 2.3.14" (stamp 14 19 9 9 2020) (stamp 14 49 9 9 2020))
+          (list "Exercise 2.3.14" (stamp 10 13 10 9 2020) (stamp 10 43 10 9 2020))
           ))
    
    (list "Extras"
