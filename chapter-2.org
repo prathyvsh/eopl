@@ -135,3 +135,9 @@ can determine if something is possible by only keeping the bindings thus far in 
 Also, in a sense, with the presence free variables, you can enact action at a distance by putting a new binding on top of the 
 expression that captures the binding of the innermost free variable.
 
+At the end of the chapter, I came to the realization that quite likely, all the examples in this book are built on top of another.
+This means that keeping a common library that has all the important functions you write could be used as a reusable utility throughout
+the program, and this incremental vocabulary you build is what I think the authors intend for their readers to use as subprocedures in the construction
+of subsequent programs introduced. I am going to go to the first chapter and start examining each exercise to see where I have opportunity for
+using vocabulary already introduced before a certain exercise. In this manner, I think the code will look much elegant at the cost of performance or may be
+even give a better view on how I can optimize the program better, now that these abstractions have given me a way to conceptualize the problem space.

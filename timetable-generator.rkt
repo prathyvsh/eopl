@@ -201,7 +201,7 @@
 
 (define start-date (stamp 00 00 30 7 2020))
 (define week-start-date (stamp 00 00 27 7 2020))
-(define last-date (last (last (last (last (rest (drop-right dates 1)))))))
+(define last-date (third (last (last (last (rest (drop-right dates 1)))))))
 (define elapsed-days (quotient (span week-start-date last-date) (* 24 60 60)))
 
 (define (gen-dates from days)
