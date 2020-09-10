@@ -56,49 +56,20 @@
   (car (rename-helper exp v1 v2 '() '()))
   #f))
 
-;; No op
-(equal? (rename 'x 'y 'z) 'x)
-(equal? (rename '(a b) 'x 'z) '(a b))
-(equal? (rename '(lambda (a) a) 'b 'a) '(lambda (a) a))
-(equal? (rename '(lambda (a) b) 'z 'b) '(lambda (a) z))
-(equal? (rename '(lambda (a) (lambda (b) b)) 'a 'b) '(lambda (a) (lambda (b) b)))
-(equal? (rename '(lambda (a) a) 'a 'm) '(lambda (a) a))
-(equal? (rename '(lambda (a) (lambda (b) (a b))) 'c 'b) '(lambda (a) (lambda (b) (a b))))
+
+(define (build-alpha-lexp inner-exp exp v)
+  (if inner-exp
+    (list 'lambda (cons v (cdr (get-bindings exp))) inner-exp)
+    #f))
+
+(define (alpha-convert exp v)
+  (build-alpha-lexp (rename (get-exp exp) v (car (get-bindings exp))) exp v))
+
+(equal? (alpha-convert '(lambda (a) a) 'c) '(lambda (c) c))
+(equal? (alpha-convert '(lambda (a) (lambda (b) (b a))) 'c)
+        '(lambda (c) (lambda (b) (b c))))
+(equal? (alpha-convert '(lambda (x) ((lambda (x) x) x)) 'y)
+        '(lambda (y) ((lambda (x) x) y)))
+(equal? (alpha-convert '(lambda (x) (y x)) 'y) #f) 
 
 
-;; False
-(equal? (rename 'a 'a 'b) #f)
-(equal? (rename '(lambda (a) (x y)) 'x 'y) #f)
-(equal? (rename '(a b) 'a 'b) #f)
-
-; Single variable
-(equal? (rename 'a 'b 'a) 'b)
-
-; Lambda
-(equal? (rename '(lambda (a) b) 'c 'b) '(lambda (a) c))
-(equal? (rename '(lambda (b) (b a)) 'c 'a) '(lambda (b) (b c)))
-(equal? (rename '(lambda (a) (x x)) 'y 'x) '(lambda (a) (y y)))
-
-;; Nested lambda
-(equal? (rename '(lambda (a) (lambda (b) (lambda (c) (x y z)))) 'w 'x)
-        '(lambda (a) (lambda (b) (lambda (c) (w y z)))))
-(equal? (rename '(lambda (a) (lambda (b) (c (b (c a))))) 'd 'c)
-        '(lambda (a) (lambda (b) (d (b (d a))))))
-
-;; If
-(equal? (rename '(if a b c) 'd 'b) '(if a d c))
-
-;; Application
-(equal? (rename '((lambda (x) x) x) 'y 'x) '((lambda (x) x) y))
-(equal? (rename '(a b c d) 'm 'c) '(a b m d))
-
-;; Heterogenous expressions
-(equal? (rename '(a (if b c d) (lambda (y) c)) 'm 'c)
-        '(a (if b m d) (lambda (y) m)))
-(equal? (rename '(a b c (lambda (b) b)) 'y 'b)
-        '(a y c (lambda (b) b)))
-(equal? (rename '(if (lambda (c) (a c)) (a b) (a c)) 'x 'c)
-        '(if (lambda (c) (a c)) (a b) (a x)))
-
-(equal? (rename '(if (lambda (c) (a c)) (a b) (a c)) 'x 'a)
-        '(if (lambda (c) (x c)) (x b) (x c)))
