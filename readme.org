@@ -2,7 +2,22 @@
 
 This is a comparative study of the three version sof Essentials of Programming Languages. I intend to study these three versions and cross compare them for the strengths and weaknesses. So far, I have completed 2 chapters of the first edition and is looking forward to work on the second and third editions now.
 
+* Reading List
+
+** First Edition, 1992
+
+** Second Edition, 2001
+
+** The Further Reading section on this edition looks terse and doesn't seem to have a detailed description as can be seen in the first and third edition.
+
+** Third Edition, 2008
+
 A table of how much overlap there is between the chapters I think would be of benefit for someone looking to do such a comparative study.
+
+| Topic | First Edition | Second Edition | Third Edition |
+==========================================================
+| Foreword | Same | Same | Contains a postscript |
+| Introduction | | | |
 
 * First Edition
 
