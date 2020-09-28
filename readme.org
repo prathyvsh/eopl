@@ -1,6 +1,6 @@
 * Essentials of Programming Languages
 
-This is a comparative study of the three versions of Essentials of Programming Languages. I intend to study these three versions and cross compare them for the strengths and weaknesses. So far, I have completed 2 chapters of the first edition and is looking forward to work on the second and third editions now.
+This is a comparative study of the three versions of Essentials of Programming Languages. I intend to study the three editions and compare them for the strengths and weaknesses. So far, I have completed 2 chapters of the first edition and is working on the second and third editions now.
 
 * Reading List
 
