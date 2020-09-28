@@ -14,7 +14,9 @@ This is a comparative study of the three versions of Essentials of Programming L
 
 A table of how much overlap there is between the chapters I think would be of benefit for someone looking to do such a comparative study.
 
+------------------------------------------------------------
 | Topic | First Edition | Second Edition | Third Edition |
+------------------------------------------------------------
 | Foreword | Same | Same | Contains a postscript |
 | Introduction | | | |
 
