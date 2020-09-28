@@ -1,6 +1,14 @@
-* Essentials of Programming Languages: First Edition
+* Essentials of Programming Languages
+
+This is a comparative study of the three version sof Essentials of Programming Languages. I intend to study these three versions and cross compare them for the strengths and weaknesses. So far, I have completed 2 chapters of the first edition and is looking forward to work on the second and third editions now.
+
+A table of how much overlap there is between the chapters I think would be of benefit for someone looking to do such a comparative study.
+
+* First Edition
 
 [[Cover Image of First Edition][./cover.jpg]]
+
+** Review
 
 * [[./chapter-1.org][Chapter 1: Tools for Symbolic Programming]]
 
